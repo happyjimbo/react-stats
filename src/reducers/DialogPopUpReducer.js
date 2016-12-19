@@ -1,17 +1,17 @@
+import { DISPLAY_DIALOG } from "../actions/DisplayDialogAction";
+
 const initialState = {
-  displayDialog: false
+	displayDialog: false
 }
 
-const DialogPopUpReducer = (state = initialState, action) => {
+export const dialogPopUpReducer = (state = initialState, action) => {
 
-  switch (action.type) {
-    case 'DISPLAY_DIALOG':
-      var obj = Object.assign({}, state, { displayDialog: action.displayDialog });
-      return obj;
-
-    default:
-      return state;
-  }
+	switch (action.type) {
+		case DISPLAY_DIALOG:
+			return Object.assign({}, state, { 
+				displayDialog: action.displayDialog 
+			});
+		default:
+			return state;
+	}
 };
-
-export default DialogPopUpReducer;

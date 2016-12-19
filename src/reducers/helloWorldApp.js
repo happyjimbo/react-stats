@@ -1,8 +1,8 @@
-//import { combineReducers } from 'redux';
-import DialogPopUpReducer from './DialogPopUpReducer';
+import { combineReducers } from 'redux';
+import { dialogPopUpReducer } from './DialogPopUpReducer';
+import { selectedStat } from './StatsReducers';
 
-const helloWorldApp = DialogPopUpReducer; /*= combineReducers({
-    DialogPopUpReducer
-});*/
-
-export default helloWorldApp;
+export default combineReducers({
+    dialogPopUpReducer,
+    selectedStat    
+});

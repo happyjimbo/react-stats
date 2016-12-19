@@ -4,7 +4,7 @@ import DialogPopUp from '../presentation/DialogPopUp';
 
 const mapStateToProps = (state) =>  {
     return {
-        display: state.displayDialog,
+        display: state.dialogPopUpReducer.displayDialog,
         closeButtonText: "Close Dialog",
         saveButtonText: "Save Input Data",
         titleText: "Ooo what a fancy title",

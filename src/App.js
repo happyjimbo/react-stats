@@ -2,6 +2,7 @@ import React/*, { Component }*/ from 'react';
 import './css/App.css';
 import DialogButtonContainer from './container/DialogButtonContainer';
 import DialogPopUpContainer from './container/DialogPopUpContainer';
+import StatButtonContainer from './container/StatButtonContainer';
 
 // class App extends Component {
 //   render() {
@@ -17,9 +18,11 @@ import DialogPopUpContainer from './container/DialogPopUpContainer';
 const App = () => {
   return (
     <div className="App">
-    <DialogButtonContainer />
-    <DialogPopUpContainer />
-  </div>);
+      <DialogButtonContainer />      
+      <DialogPopUpContainer />
+      <br/>
+      <StatButtonContainer />
+    </div>);
 }
 
 export default App;
