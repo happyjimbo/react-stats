@@ -3,6 +3,7 @@ import './css/App.css';
 import DialogButtonContainer from './container/DialogButtonContainer';
 import DialogPopUpContainer from './container/DialogPopUpContainer';
 import StatButtonContainer from './container/StatButtonContainer';
+import StatsLabelContainer from './container/StatsLabelContainer';
 
 // class App extends Component {
 //   render() {
@@ -22,6 +23,8 @@ const App = () => {
       <DialogPopUpContainer />
       <br/>
       <StatButtonContainer />
+      <br/>
+      <StatsLabelContainer />
     </div>);
 }
 

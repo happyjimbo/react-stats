@@ -1,16 +1,23 @@
-import { SELECT_STAT, REQUEST_STAT, RECEIVE_STAT, RECEIVE_STAT_FAIL } from "../actions/StatsAction";
+import { RECEIVE_STAT, RECEIVE_STAT_FAIL } from "../actions/StatsAction";
 
-export const statReceivedReducer = (state = {}, action) => {
+const initalState = {
+    lastTradePriceOnly : ""
+}
+
+export const statReceivedReducer = (state = initalState, action) => {
+
+    let lastTradePriceOnly = "";
+    if (action.data !== undefined)
+    {
+        lastTradePriceOnly = action.data.query.results.quote.LastTradePriceOnly;
+    }
+
     switch(action.type) {
-        case RECEIVE_STAT:
-            return Object.assign({}, state, {
-                data: state.data    
-            });
+        case RECEIVE_STAT:        
+            return Object.assign({}, state, { lastTradePriceOnly: lastTradePriceOnly, error: undefined });
+        case RECEIVE_STAT_FAIL:
+            return Object.assign({}, state, { error: action.message, lastTradePriceOnly: undefined });
         default:
             return state;
     }
 }
-
-// TODO: Remove this comment
-// http://finance.google.com/finance/info?client=ig&q=FTSE:LLOY
-// The above link works, though it is technically deprecated

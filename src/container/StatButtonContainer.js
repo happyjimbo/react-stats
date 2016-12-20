@@ -3,9 +3,7 @@ import ClickButton from '../presentation/ClickButton';
 import {fetchStat} from '../actions/StatsAction';
 
 const mapStateToProps = (state) => {
-
-    console.log(state.statReceivedReducer);
-
+    // This should probably not live here anymore as this data is now static..
     return {
         display: true,
         buttonText: "Get Stat",
