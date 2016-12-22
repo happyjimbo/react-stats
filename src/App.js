@@ -1,31 +1,27 @@
-import React/*, { Component }*/ from 'react';
+import React, { Component } from 'react';
+import {ButtonToolbar} from 'react-bootstrap';
 import './css/App.css';
 import DialogButtonContainer from './container/DialogButtonContainer';
 import DialogPopUpContainer from './container/DialogPopUpContainer';
-import StatButtonContainer from './container/StatButtonContainer';
 import StatsLabelContainer from './container/StatsLabelContainer';
+import StatsFormContainer from './container/StatsFormContainer';
+import StatsListGroupContainer from './container/StatsListGroupContainer';
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <DialogButtonContainer />
-//         <DialogPopUpContainer />
-//       </div>
-//     );
-//   }
-// }
+class App extends Component {
+	render() {
 
-const App = () => {
-  return (
-    <div className="App">
-      <DialogButtonContainer />      
-      <DialogPopUpContainer />
-      <br/>
-      <StatButtonContainer />
-      <br/>
-      <StatsLabelContainer />
-    </div>);
+		var align = { textAlign: 'right' }
+
+		return (
+			<div className="App">
+				<StatsFormContainer />
+				<StatsListGroupContainer />			
+				<DialogButtonContainer />
+				<DialogPopUpContainer />      
+				<StatsLabelContainer />
+			</div>
+		);
+	}
 }
 
 export default App;
