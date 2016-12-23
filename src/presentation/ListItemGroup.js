@@ -2,17 +2,12 @@ import React from 'react';
 import {ListGroup, ListGroupItem} from 'react-bootstrap';
 import ClickListItem from './ClickListItem';
 
-const ListItemGroup = ( {count, StatListItemContainer} ) => {
-
-    let items = [];
-    for (let i = 0; i < count; i++) {
-        items.push(i);
-    }
+const ListItemGroup = ( {key, stats, statsOrder, StatListItemContainer} ) => {
 
     return (
         <ListGroup>
         {
-            items.map(i => <StatListItemContainer key={i} statName={String(i)} />)            
+            statsOrder.map(key => <StatListItemContainer key={key} statName={key} stats={stats} />)   
         }
         </ListGroup>
     );

@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, Button} from 'react-bootstrap';
 
-const StateForm = ({getValidationState, onClick, handleChange, formValue, controlLabel, helpLabel}) => {
+const StateForm = ({getValidationState, onClick, defaultValue, handleChange, formValue, controlLabel, helpLabel}) => {
     return (
         <Navbar>
             <Navbar.Header>
@@ -15,7 +15,7 @@ const StateForm = ({getValidationState, onClick, handleChange, formValue, contro
                     <FormGroup>
                         <FormControl 
                         type="text" 
-                        placeholder="Search" 
+                        placeholder="Search"
                         onChange={e => handleChange(e.target.value)}/>
                     </FormGroup>
                     {' '}

@@ -6,13 +6,16 @@ import thunkMiddleware from 'redux-thunk';
 import App from './App';
 import './css/index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import helloWorldApp from './reducers/helloWorldApp'
+import helloWorldApp from './reducers/helloWorldApp';
+import createLogger from 'redux-logger';
+
 
 //import logger from 'redux-logger';
 
-//let store = createStore(helloWorldApp);
+//const winstonLogger = new (winston.Logger)();
+const logger = createLogger();
 const store = createStore(helloWorldApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), 
-	applyMiddleware(thunkMiddleware)
+	applyMiddleware(thunkMiddleware, logger)
 );
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 //const store = createStore(helloWorldApp, composeEnhancers(applyMiddleware(logger)) );

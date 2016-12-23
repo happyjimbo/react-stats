@@ -1,36 +1,27 @@
 import React, {PropTypes, Component} from 'react';
 import {ListGroupItem} from 'react-bootstrap';
 
-/*const ClickListItem = ( {linkText, click, key} ) => {
-
-    console.log("key " + key);
-
-    return (
-        <ListGroupItem onClick={click}>{linkText}</ListGroupItem>
-    );
-}*/
-
 class ClickListItem extends Component {
 
     render() {
 
-        console.log("statName " + this.props.statName);
+       let statName = this.props.statName;
+       let info = this.props.info;
+       let click = this.props.click;
+       let StatsLabelContainer = this.props.StatsLabelContainer;
+
+       let style = this.props.success ? "success" : "danger";
 
         return (
-            <ListGroupItem onClick={this.props.click}>{this.props.linkText}</ListGroupItem>
-        );
+            <ListGroupItem onClick={click} bsStyle={style}>
+                <b>{statName}</b> : {info}
+            </ListGroupItem>
+        ); 
     }
 
     static propTypes = {
-        click: PropTypes.func.isRequired,
-        linkText: PropTypes.string.isRequired,
         click: PropTypes.func.isRequired
     }
 }
-
-// ClickListItem.PropTypes = {
-//     linkText: PropTypes.string.isRequired,
-//     click: PropTypes.func.isRequired
-// }
 
 export default ClickListItem;

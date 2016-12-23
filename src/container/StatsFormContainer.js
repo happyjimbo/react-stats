@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
         handleChange: (text) => { inputValue = text },
         formValue: state.value,
         controlLabel: "Search for Stock",
-        helpLabel: "Add .L at the end to look up FTSE stocks"
+        helpLabel: "Add .L at the end to look up FTSE stocks",
     }
 }
 

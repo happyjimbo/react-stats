@@ -1,32 +1,76 @@
 import { RECEIVE_STAT, RECEIVE_STAT_FAIL } from "../actions/StatsAction";
 
 const initalState = {
-    lastTradePriceOnly : ""
+    lastTradePriceOnly : "",
+    stats: {},
+    statsOrder: [],
+    error: undefined
+}
+
+const getStatsOrder = (state, key) => {
+
+   let statsOrder = [];
+    if (state.statsOrder !== undefined) {
+         statsOrder = Array.from(state.statsOrder);
+    }
+
+    let notInArray = statsOrder.find(e => e === key) == undefined;
+    if (notInArray) {
+        statsOrder.push(key); 
+    }
+    
+    return statsOrder;
+}
+
+const getStats = (state, keys, action) => {
+
+    if (action.data !== undefined) {
+        return Object.assign({}, state.stats, {
+            [keys]: action.data
+        });
+    }
+
+    return state;    
+}
+
+const getLastTradePrice = (state, action) => {
+    
+    let lastTradePriceOnly = state.lastTradePriceOnly;
+    if (action.data !== undefined) {
+        
+        let priceFromData = action.data.query.results.quote.LastTradePriceOnly;
+        if (priceFromData !== undefined) {
+            lastTradePriceOnly = action.data.query.results.quote.LastTradePriceOnly;
+        }
+    }
+    return lastTradePriceOnly;
 }
 
 export const statReceivedReducer = (state = initalState, action) => {
 
-    let lastTradePriceOnly = "";
-    if (action.data !== undefined)
-    {
-        lastTradePriceOnly = action.data.query.results.quote.LastTradePriceOnly;
-    }
+    let lastTradePriceOnly = getLastTradePrice(state, action);
 
-    // For the StatListItemContainer we should keep an object on this state,
-    // which we then update to have the new stats that have been pulled from
-    // the server.
-
+    let key = String(action.stat);    
+    let statsOrder = getStatsOrder(state, key);
+    let stats = getStats(state, key, action);
+    
     switch(action.type) {
         case RECEIVE_STAT:        
             return Object.assign({}, state, {
-                 lastTradePriceOnly: 
-                 lastTradePriceOnly, error: undefined 
-                });
+                key,
+                stats,
+                statsOrder,
+                lastTradePriceOnly: lastTradePriceOnly, 
+                error: undefined
+            });
         case RECEIVE_STAT_FAIL:
             return Object.assign({}, state, {
-                 error: action.message, 
-                 lastTradePriceOnly: undefined
-                });
+                key,
+                stats,
+                statsOrder,
+                error: action.message, 
+                lastTradePriceOnly: undefined
+            });
         default:
             return state;
     }

@@ -3,8 +3,27 @@ import ListItemGroup from '../presentation/ListItemGroup';
 import StatListItemContainer from './StatListItemContainer';
 
 const mapStateToProps = (state) => {
+    
+    let key = "";
+    let stats = {};
+    let statsOrder = [];
+
+    if (state.statReceivedReducer !== undefined)
+    {
+        let statState = state.statReceivedReducer;
+        let key = statState.key;
+
+        if (statState.stats !== undefined)
+        {
+            stats = statState.stats;
+            statsOrder = statState.statsOrder;
+        }
+    }
+
     return {
-        count: 10,
+        key,
+        stats,
+        statsOrder,
         StatListItemContainer:StatListItemContainer
     }
 }

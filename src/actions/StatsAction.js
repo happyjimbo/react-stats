@@ -1,8 +1,5 @@
 import fetch from 'isomorphic-fetch'
 
-// Get the stat
-
-/****** Public API *******/
 
 export function fetchStat(stat) {
     return (dispatch) => {
@@ -16,14 +13,12 @@ export function fetchStat(stat) {
     };
 }
 
-/****** Private API *******/
-
-function validateResponse(stat, data)
+function validateResponse(stat, data) 
 {
-    if (data !== undefined)
+    if (data.query !== undefined)
     {
-        let lastTradePriceOnly = data.query.results.quote.LastTradePriceOnly;
-        if (lastTradePriceOnly !== null)
+        let quote = data.query.results.quote;
+        if (quote !== null)
         {
             return receieveStat(stat, data);
         }
