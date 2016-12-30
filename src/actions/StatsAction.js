@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch'
-
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsConsts';
+import fetch from 'isomorphic-fetch';
 
 export function fetchStat(stat) {
     return (dispatch) => {
@@ -27,8 +27,6 @@ function validateResponse(stat, data)
     return receieveStatFail(stat, "Unable to retrieve stat, is it a valid value?");
 }
 
-export const RECEIVE_STAT = "RECEIVE_STAT";
-
 export function receieveStat(stat, data) {
     return {
         type: RECEIVE_STAT,
@@ -37,8 +35,6 @@ export function receieveStat(stat, data) {
         receivedAt: Date.now()
     }
 }
-
-export const RECEIVE_STAT_FAIL = "RECEIVE_STAT_FAIL";
 
 export function receieveStatFail(stat, message) {
     return {

@@ -1,0 +1,2 @@
+export const RECEIVE_STAT = "RECEIVE_STAT";
+export const RECEIVE_STAT_FAIL = "RECEIVE_STAT_FAIL";

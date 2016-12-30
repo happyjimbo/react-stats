@@ -19,6 +19,8 @@ const store = createStore(CombineReducers, undefined, composeEnhancers(
 
 persistStore(store);
 
+//store.dispatch();
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
