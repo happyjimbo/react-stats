@@ -4,15 +4,12 @@ import StatListItemContainer from './StatListItemContainer';
 
 const mapStateToProps = (state) => {
     
-    let key = "";
     let stats = {};
     let statsOrder = [];
 
     if (state.statReceivedReducer !== undefined)
     {
         let statState = state.statReceivedReducer;
-        let key = statState.key;
-
         if (statState.stats !== undefined)
         {
             stats = statState.stats;
@@ -21,7 +18,6 @@ const mapStateToProps = (state) => {
     }
 
     return {
-        key,
         stats,
         statsOrder,
         StatListItemContainer:StatListItemContainer

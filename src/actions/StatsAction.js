@@ -1,9 +1,18 @@
 import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsConsts';
 import fetch from 'isomorphic-fetch';
 
-export function fetchStat(stat) {
-    return (dispatch) => {
+export function storedStats(state, dispatch) {
 
+    return (dispatch) => { 
+        for (let stat of state.statReceivedReducer.statsOrder) {
+            dispatch(fetchStat(stat));
+        }
+    }
+}
+
+export function fetchStat(stat) {
+
+    return (dispatch) => {
         let statUrl = getStatUrl(stat);
 
         return fetch(statUrl)
@@ -13,13 +22,12 @@ export function fetchStat(stat) {
     };
 }
 
-function validateResponse(stat, data) 
-{
-    if (data.query !== undefined)
-    {
-        let quote = data.query.results.quote;
-        if (quote !== null)
-        {
+function validateResponse(stat, data) {
+
+
+    if (data.query !== undefined) {
+        let name = data.query.results.quote.Name;
+        if (name !== null) {
             return receieveStat(stat, data);
         }
     }
@@ -45,7 +53,6 @@ export function receieveStatFail(stat, message) {
     }
 }
 
-function getStatUrl(property)
-{
+function getStatUrl(property) {
     return `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22${property}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
 }

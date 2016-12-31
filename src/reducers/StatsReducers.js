@@ -7,14 +7,54 @@ const initalState = {
     error: undefined
 }
 
-const getStatsOrder = (state, key) => {
+export const statReceivedReducer = (state = initalState, action) => {
+    
+    switch(action.type) {
+        case RECEIVE_STAT:        
+            return receiveStat(state, action);
+        case RECEIVE_STAT_FAIL:
+            return receiveStatFail(state, action);
+        default:
+            return state;
+    }
+}
+
+function receiveStat (state, action) {
+
+    let lastTradePriceOnly = getLastTradePrice(state, action);
+    let key = String(action.stat);    
+    let statsOrder = getStatsOrder(state, key);
+    let stats = getStats(state, key, action);
+
+    return Object.assign({}, state, {
+        stats,
+        statsOrder,
+        lastTradePriceOnly, 
+        error: undefined
+    }); 
+}
+
+function receiveStatFail (state, action) {
+
+    let statsOrder = state.statsOrder;
+    let stats = state.stats;
+
+    return Object.assign({}, state, {
+        stats,
+        statsOrder,
+        error: action.message, 
+        lastTradePriceOnly: undefined
+    });
+}
+
+function getStatsOrder (state, key) {
 
    let statsOrder = [];
     if (state.statsOrder !== undefined) {
          statsOrder = Array.from(state.statsOrder);
     }
 
-    let notInArray = statsOrder.find(e => e === key) == undefined;
+    let notInArray = statsOrder.find(e => e === key) === undefined;
     if (notInArray) {
         statsOrder.push(key); 
     }
@@ -22,7 +62,7 @@ const getStatsOrder = (state, key) => {
     return statsOrder;
 }
 
-const getStats = (state, keys, action) => {
+function getStats (state, keys, action) {
 
     if (action.data !== undefined) {
         return Object.assign({}, state.stats, {
@@ -33,7 +73,7 @@ const getStats = (state, keys, action) => {
     return state;    
 }
 
-const getLastTradePrice = (state, action) => {
+function getLastTradePrice (state, action) {
     
     let lastTradePriceOnly = state.lastTradePriceOnly;
     if (action.data !== undefined) {
@@ -44,34 +84,4 @@ const getLastTradePrice = (state, action) => {
         }
     }
     return lastTradePriceOnly;
-}
-
-export const statReceivedReducer = (state = initalState, action) => {
-
-    let lastTradePriceOnly = getLastTradePrice(state, action);
-
-    let key = String(action.stat);    
-    let statsOrder = getStatsOrder(state, key);
-    let stats = getStats(state, key, action);
-    
-    switch(action.type) {
-        case RECEIVE_STAT:        
-            return Object.assign({}, state, {
-                key,
-                stats,
-                statsOrder,
-                lastTradePriceOnly: lastTradePriceOnly, 
-                error: undefined
-            });
-        case RECEIVE_STAT_FAIL:
-            return Object.assign({}, state, {
-                key,
-                stats,
-                statsOrder,
-                error: action.message, 
-                lastTradePriceOnly: undefined
-            });
-        default:
-            return state;
-    }
 }

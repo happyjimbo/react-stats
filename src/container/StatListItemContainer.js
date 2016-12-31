@@ -6,7 +6,6 @@ import StatsLabelContainer from './StatsLabelContainer';
 const mapStateToProps = (state, props) => {
 
     let statName = props.statName;
-    let stats = props.stats;     
     let stat = props.stats[statName];
 
     let info = stat.query.results.quote.LastTradePriceOnly;

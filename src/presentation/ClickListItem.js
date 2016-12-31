@@ -8,7 +8,6 @@ class ClickListItem extends Component {
        let statName = this.props.statName;
        let info = this.props.info;
        let click = this.props.click;
-       let StatsLabelContainer = this.props.StatsLabelContainer;
 
        let style = this.props.success ? "success" : "danger";
 

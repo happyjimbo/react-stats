@@ -1,12 +1,12 @@
 import React, {PropTypes} from 'react';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Navbar, Button} from 'react-bootstrap';
+import {FormGroup, FormControl, Navbar, Button} from 'react-bootstrap';
 
-const StateForm = ({getValidationState, onClick, defaultValue, handleChange, formValue, controlLabel, helpLabel}) => {
+const StateForm = ({onClick, handleChange, searchText, helpLabel}) => {
     return (
         <Navbar>
             <Navbar.Header>
                 <Navbar.Brand>
-                    {controlLabel}
+                    {searchText}
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
@@ -28,5 +28,12 @@ const StateForm = ({getValidationState, onClick, defaultValue, handleChange, for
         </Navbar>
     );
 }
+
+StateForm.PropTypes = {
+    onClick: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    controlLabel: PropTypes.string.isRequired,
+    helpLabel: PropTypes.string.isRequired
+};
 
 export default StateForm;

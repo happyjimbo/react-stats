@@ -9,8 +9,8 @@ const mapStateToProps = (state) => {
         getValidationState: () => {},        
         handleChange: (text) => { inputValue = text },
         formValue: state.value,
-        controlLabel: "Search for Stock",
-        helpLabel: "Add .L at the end to look up FTSE stocks",
+        searchText: "Search for Stock",
+        helpText: "Add .L at the end to look up FTSE stocks",
     }
 }
 

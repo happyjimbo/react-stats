@@ -9,6 +9,7 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CombineReducers from './reducers/CombineReducers';
 import createLogger from 'redux-logger';
 import {persistStore, autoRehydrate} from 'redux-persist'
+import {storedStats} from './actions/StatsAction';
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,9 +18,12 @@ const store = createStore(CombineReducers, undefined, composeEnhancers(
   autoRehydrate()
 ));
 
-persistStore(store);
+//persistStore(store).purge();
 
-//store.dispatch();
+persistStore(store, {}, () => {
+  let dispatch = store.dispatch;
+  dispatch(storedStats(store.getState()), dispatch);
+});
 
 ReactDOM.render(
   <Provider store={store}>
