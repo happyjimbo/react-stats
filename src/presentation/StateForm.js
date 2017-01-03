@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import {FormGroup, FormControl, Navbar, Button} from 'react-bootstrap';
 
-const StateForm = ({onClick, handleChange, searchText, helpLabel}) => {
+const StateForm = ({onClick, handleChange, searchText, helpText}) => {
     return (
         <Navbar>
             <Navbar.Header>
@@ -21,7 +21,7 @@ const StateForm = ({onClick, handleChange, searchText, helpLabel}) => {
                     {' '}
                     <Button type="submit" onClick={ onClick }>Submit</Button>
                      <Navbar.Text pullRight>
-                        {helpLabel}
+                        {helpText}
                     </Navbar.Text>
                 </Navbar.Form>
             </Navbar.Collapse>

@@ -1,0 +1,12 @@
+exports[`ClickListItem Compare to matched snapshot 1`] = `
+<button
+  className="list-group-item list-group-item-danger"
+  onClick={[Function]}
+  type="button">
+  <b>
+    MyStatName
+  </b>
+   : 
+  this is some info
+</button>
+`;
