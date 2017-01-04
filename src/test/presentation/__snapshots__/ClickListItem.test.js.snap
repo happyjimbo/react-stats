@@ -1,4 +1,4 @@
-exports[`ClickListItem Compare to matched snapshot 1`] = `
+exports[`ClickListItem compares component to snapshot 1`] = `
 <button
   className="list-group-item list-group-item-danger"
   onClick={[Function]}
@@ -7,6 +7,6 @@ exports[`ClickListItem Compare to matched snapshot 1`] = `
     MyStatName
   </b>
    : 
-  this is some info
+  some info
 </button>
 `;

@@ -19,6 +19,8 @@ class ClickListItem extends Component {
     }
 
     static propTypes = {
+        statName: PropTypes.string.isRequired,
+        info: PropTypes.string.isRequired,
         click: PropTypes.func.isRequired
     }
 }

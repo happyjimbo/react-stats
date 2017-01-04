@@ -5,11 +5,29 @@ import renderer from 'react-test-renderer';
 
 describe('ClickListItem', () => {
 
-    it('Compare to matched snapshot', () => {
+    const statName = "MyStatName";
+    const info = "some info";
+    const click = () => {};
+
+    function setUp(extraProps = undefined) {
+
+        const defaultProps = {
+            statName,
+            info,
+            click
+        };
+
+        const props = Object.assign({}, defaultProps, extraProps);
+        const component = shallow(<ClickListItem {...props} />);
+
+        return {
+            props,
+            component
+        }
+    }
+
+    it('compares component to snapshot', () => {
         
-        const statName = "MyStatName";
-        const info = "this is some info";
-        const click = () => {};
         const style = true;
 
         const component = renderer.create(
@@ -20,33 +38,48 @@ describe('ClickListItem', () => {
         expect(clickListItem).toMatchSnapshot();
     });
 
-    it ('click runs callback', () => {
+    it ('runs click callback when clicked, setting value to true', () => {
 
         let clicked = false;
         const click = () => { clicked = true; };
 
-        const component = shallow(
-            <ClickListItem click={click} />
-        );
+        const props = { click };
+        const { component } = setUp(props);
+        
+        expect(clicked).toBe(false);
 
         component.simulate('click');
+        
         expect(clicked).toBe(true);
     });
 
-    // it ('props should all work', () => {
+    it ('sets byStyle to success state', () => {
 
-    //     const statName = "MyStatName";
-    //     const info = "this is some info";        
-    //     const style = true;
+        const props = { success: true };
+        const { component } = setUp(props);
 
-    //     let clicked = false;
-    //     const click = () => { clicked = true; };
+        const componentProps = component.props();
+        expect(componentProps.bsStyle).toBe("success");
+    });
 
-    //     const component = shallow(
-    //         <ClickListItem statName={statName} info={info} click={click} style={style} />
-    //     );        
-    //     //expect(component.find('<b>')).toBe(statName);
-    // });
+    it ('sets byStyle to danger state', () => {
 
+        const props = { success: false };
+        const { component } = setUp(props);
 
+        const componentProps = component.props();
+        expect(componentProps.bsStyle).toBe("danger");
+    });
+
+    it ('displays statName and info', () => {
+
+        const { component } = setUp();
+
+        const containsStatName = component.children().contains(statName);
+        expect(containsStatName).toBe(true);
+
+        const containsInfo = component.children().contains(info);
+        expect(containsInfo).toBe(true);
+    });
+    
 });
