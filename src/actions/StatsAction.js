@@ -1,6 +1,7 @@
 import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsConsts';
 import fetch from 'isomorphic-fetch';
 
+// Look at doing this wthout passing in dispatch.
 export function storedStats(state, dispatch) {
 
     return (dispatch) => { 
@@ -24,7 +25,6 @@ export function fetchStat(stat) {
 
 function validateResponse(stat, data) {
 
-
     if (data.query !== undefined) {
         let name = data.query.results.quote.Name;
         if (name !== null) {
@@ -39,8 +39,7 @@ export function receieveStat(stat, data) {
     return {
         type: RECEIVE_STAT,
         stat,
-        data,
-        receivedAt: Date.now()
+        data
     }
 }
 
@@ -48,11 +47,10 @@ export function receieveStatFail(stat, message) {
     return {
         type: RECEIVE_STAT_FAIL,
         stat,
-        message: message,
-        receivedAt: Date.now()
+        message: message
     }
 }
 
-function getStatUrl(property) {
+export function getStatUrl(property) {
     return `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22${property}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
 }
