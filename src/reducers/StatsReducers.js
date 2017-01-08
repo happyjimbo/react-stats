@@ -1,4 +1,4 @@
-import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsConsts';
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
 
 const initalState = {
     lastTradePriceOnly : "",

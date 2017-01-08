@@ -1,4 +1,4 @@
-import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsConsts';
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
 import fetch from 'isomorphic-fetch';
 
 // Look at doing this wthout passing in dispatch.
@@ -24,7 +24,6 @@ export function fetchStat(stat) {
 }
 
 function validateResponse(stat, data) {
-
     if (data.query !== undefined) {
         let name = data.query.results.quote.Name;
         if (name !== null) {
@@ -32,7 +31,7 @@ function validateResponse(stat, data) {
         }
     }
 
-    return receieveStatFail(stat, "Unable to retrieve stat, is it a valid value?");
+    return receieveStatFail(stat, failMessage);
 }
 
 export function receieveStat(stat, data) {
@@ -53,4 +52,8 @@ export function receieveStatFail(stat, message) {
 
 export function getStatUrl(property) {
     return `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22${property}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
+}
+
+export const failMessage = () => {
+    return "Unable to retrieve stat, is it a valid value?";
 }
