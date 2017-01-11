@@ -19,12 +19,13 @@ describe("StatsReducers", () => {
         expect(reducer).toEqual(initalState);
     });
 
-
     it("should handle RECEIVE_STAT one stat", () => {
+
+        const stat = "RBS.L";
 
         const action = {
             type: types.RECEIVE_STAT,
-            stat:"RBS.L",
+            stat: stat,
             data
         };
 
@@ -33,11 +34,11 @@ describe("StatsReducers", () => {
         
         const response =  {         
             stats: {
-                "RBS.L": data
+                [stat]: data
             },
-            statsOrder: ["RBS.L"],
+            statsOrder: [stat],
             prices: {
-                "RBS.L": price
+                [stat]: price
             },
             error: undefined
         }
@@ -46,21 +47,24 @@ describe("StatsReducers", () => {
     });
 
     it("should handle RECEIVE_STAT two stats", () => {
-        
+
+        const oldStat = "LLOY.L";
+        const newStat = "RBS.L";
+                
         const action = {
             type: types.RECEIVE_STAT,
-            stat:"RBS.L",
+            stat: newStat,
             data
         };
 
         const state = 
         { 
             stats: {
-                "LLOY.L": data
+                [oldStat]: data
             },
-            statsOrder: ["LLOY.L"],
+            statsOrder: [oldStat],
             prices: {
-                "LLOY.L": price
+                [oldStat]: price
             },
             error: undefined
         };
@@ -69,13 +73,13 @@ describe("StatsReducers", () => {
         
         const response =  {         
             stats: {
-                "LLOY.L": data,
-                "RBS.L": data
+                [oldStat]: data,
+                [newStat]: data
             },
-            statsOrder: ["LLOY.L", "RBS.L"],
+            statsOrder: [oldStat, newStat],
              prices: {
-                "LLOY.L": price,
-                "RBS.L": price
+                [oldStat]: price,
+                [newStat]: price
             },
             error: undefined
         }
