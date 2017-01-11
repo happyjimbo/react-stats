@@ -50,10 +50,6 @@ function receiveStat (state, action) {
 }
 
 function receiveStatFail (state, action) {
-
-    let statsOrder = state.statsOrder;
-    let stats = state.stats;
-
     return Object.assign({}, state, {
         error: action.message, 
     });

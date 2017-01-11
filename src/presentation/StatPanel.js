@@ -21,6 +21,12 @@ class StatPanel extends Component {
       </div>
     );
   }
+
+  static propTypes = {
+    display: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired
+  }
+  
 }
 
 export default StatPanel;
