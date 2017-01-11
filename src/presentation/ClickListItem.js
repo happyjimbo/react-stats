@@ -12,7 +12,7 @@ class ClickListItem extends Component {
        let style = this.props.success ? "success" : "danger";
 
         return (
-            <ListGroupItem onClick={click} bsStyle={style}>
+            <ListGroupItem onClick={e => click(statName)} bsStyle={style}>
                 <b>{statName}</b> : {info}
             </ListGroupItem>
         ); 

@@ -1,4 +1,4 @@
-import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL, DISPLAY_DETAILED_STAT} from '../types/StatsTypes';
 import fetch from 'isomorphic-fetch';
 
 
@@ -9,6 +9,13 @@ const getStatUrl = (property) => {
 // export this so that we can access this in the unit tests.
 export const failMessage = () => {
     return "Unable to retrieve stat, is it a valid value?";
+}
+
+export function displayDetailedStats(stat) {
+     return {
+        type: DISPLAY_DETAILED_STAT,
+        stat
+    }
 }
 
 export function fetchListOfStats(stats) {

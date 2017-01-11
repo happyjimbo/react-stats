@@ -1,16 +1,19 @@
-import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL, DISPLAY_DETAILED_STAT} from '../types/StatsTypes';
 
 // export for testing
 export const initalState = {
     lastTradePriceOnly : {},
     stats: {},
     statsOrder: [],
+    displayDetailedStat: {},
     error: undefined
 }
 
 export const statReceivedReducer = (state = initalState, action) => {
     
     switch(action.type) {
+        case DISPLAY_DETAILED_STAT:
+            return displayDetailedStat(state, action);
         case RECEIVE_STAT:        
             return receiveStat(state, action);
         case RECEIVE_STAT_FAIL:
@@ -18,6 +21,17 @@ export const statReceivedReducer = (state = initalState, action) => {
         default:
             return state;
     }
+}
+
+function displayDetailedStat(state, action) {
+    let key = String(action.stat);
+
+    let displayDetailedStat = state.displayDetailedStat;
+    displayDetailedStat[key] = !displayDetailedStat[key];
+
+    return Object.assign({}, state, {
+        displayDetailedStat
+    })
 }
 
 function receiveStat (state, action) {
@@ -41,10 +55,7 @@ function receiveStatFail (state, action) {
     let stats = state.stats;
 
     return Object.assign({}, state, {
-        stats,
-        statsOrder,
         error: action.message, 
-        lastTradePriceOnly: undefined
     });
 }
 

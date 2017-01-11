@@ -19,13 +19,33 @@ describe("StatsReducers", () => {
         expect(reducer).toEqual(initalState);
     });
 
+    it ("should handle DISPLAY_DETAILED_STAT", () => {
+
+        const stat = "RBS.L";
+
+        const action = {
+            type: types.DISPLAY_DETAILED_STAT,
+            stat
+        };
+
+        const reducer = statReceivedReducer(initalState, action);
+
+        const response = Object.assign({}, initalState, {
+            displayDetailedStat: {
+                [stat]: true
+            }
+        });
+
+        expect(reducer).toEqual(response);
+    });
+
     it("should handle RECEIVE_STAT one stat", () => {
 
         const stat = "RBS.L";
 
         const action = {
             type: types.RECEIVE_STAT,
-            stat: stat,
+            stat,
             data
         };
 
@@ -57,8 +77,7 @@ describe("StatsReducers", () => {
             data
         };
 
-        const state = 
-        { 
+        const state = { 
             stats: {
                 [oldStat]: data
             },
@@ -97,12 +116,10 @@ describe("StatsReducers", () => {
         };
 
         const reducer = statReceivedReducer(initalState, action);
-        const response =  {
+
+        const response = Object.assign({}, initalState, {
             error: message, 
-            prices: undefined, 
-            stats: {}, 
-            statsOrder: []
-        }
+        });
 
         expect(reducer).toEqual(response);
     });

@@ -1,0 +1,19 @@
+exports[`StatPanel compares component to snapshot 1`] = `
+<div>
+  <div
+    className="panel panel-default"
+    id={null}
+    style={
+      Object {
+        "wordWrap": "break-word",
+      }
+    }>
+    <div
+      aria-expanded={null}
+      aria-hidden={true}
+      className="panel-collapse collapse"
+      id={undefined}
+      role={undefined} />
+  </div>
+</div>
+`;

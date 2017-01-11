@@ -1,15 +1,20 @@
 import React, {PropTypes} from 'react';
 import {ListGroup} from 'react-bootstrap';
 
-const ListItemGroup = ( {stats, statsOrder, prices, StatListItemContainer} ) => {
+const ListItemGroup = ( {stats, statsOrder, prices, displayDetails, StatListItemContainer, StatPanelContainer} ) => {
     return (
         <ListGroup>
-        {            
-            statsOrder.map(
-                statKey => <StatListItemContainer key={statKey} 
-                                                  statName={statKey} 
-                                                  stats={stats}
-                                                  prices={prices} />
+        {       
+            statsOrder.map(statKey => 
+                <div key={statKey} >     
+                    <StatListItemContainer  statName={statKey} 
+                                            stats={stats}
+                                            prices={prices} />
+
+                    <StatPanelContainer statName={statKey} 
+                                        stats={stats} 
+                                        displayDetails={displayDetails} />
+                </div>                       
             )   
         }
         </ListGroup>
@@ -19,6 +24,7 @@ const ListItemGroup = ( {stats, statsOrder, prices, StatListItemContainer} ) => 
 ListItemGroup.PropTypes = {
     stats: PropTypes.object.isRequired,
     statsOrder: PropTypes.array.isRequired,
+    prices: PropTypes.object.isRequired,
     StatListItemContainer: PropTypes.object.isRequired
 };
 

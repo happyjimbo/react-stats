@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import ClickListItem from '../presentation/ClickListItem';
-import {DisplayDialogAction} from '../actions/DisplayDialogAction';
+import {displayDetailedStats} from '../actions/StatsAction';
 
 const mapStateToProps = (state, props) => {
 
@@ -20,8 +20,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        click: () => { 
-            dispatch(DisplayDialogAction());
+        click: (stat) => { 
+            dispatch(displayDetailedStats(stat));
         }
     }
 }
