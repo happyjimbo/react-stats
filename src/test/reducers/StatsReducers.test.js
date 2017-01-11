@@ -3,32 +3,32 @@ import * as types from '../../types/StatsTypes';
 
 describe("StatsReducers", () => {
 
+    const price = "123";
+    const data = {
+        query: {
+            results: {
+                quote: {
+                    LastTradePriceOnly:price
+                }
+            }
+        }
+    }
+
     it("should return inital state", () => {
         const reducer = statReceivedReducer(undefined, {});
         expect(reducer).toEqual(initalState);
     });
 
 
-    it("should handle RECEIVE_STAT", () => {
-
-        const lastTradePriceOnly = "123";
-        
-        const data = {
-            query: {
-                results: {
-                    quote: "4321"
-                }
-            }
-        }
+    it("should handle RECEIVE_STAT one stat", () => {
 
         const action = {
             type: types.RECEIVE_STAT,
             stat:"RBS.L",
-            stats: {lastTradePriceOnly},
             data
         };
 
-        const state = { lastTradePriceOnly };
+        const state = {};
         const reducer = statReceivedReducer(state, action);
         
         const response =  {         
@@ -36,10 +36,50 @@ describe("StatsReducers", () => {
                 "RBS.L": data
             },
             statsOrder: ["RBS.L"],
-            lastTradePriceOnly,
+            prices: {
+                "RBS.L": price
+            },
             error: undefined
         }
+
+        expect(reducer).toEqual(response);
+    });
+
+    it("should handle RECEIVE_STAT two stats", () => {
         
+        const action = {
+            type: types.RECEIVE_STAT,
+            stat:"RBS.L",
+            data
+        };
+
+        const state = 
+        { 
+            stats: {
+                "LLOY.L": data
+            },
+            statsOrder: ["LLOY.L"],
+            prices: {
+                "LLOY.L": price
+            },
+            error: undefined
+        };
+
+        const reducer = statReceivedReducer(state, action);
+        
+        const response =  {         
+            stats: {
+                "LLOY.L": data,
+                "RBS.L": data
+            },
+            statsOrder: ["LLOY.L", "RBS.L"],
+             prices: {
+                "LLOY.L": price,
+                "RBS.L": price
+            },
+            error: undefined
+        }
+
         expect(reducer).toEqual(response);
     });
 
@@ -55,7 +95,7 @@ describe("StatsReducers", () => {
         const reducer = statReceivedReducer(initalState, action);
         const response =  {
             error: message, 
-            lastTradePriceOnly: undefined, 
+            prices: undefined, 
             stats: {}, 
             statsOrder: []
         }

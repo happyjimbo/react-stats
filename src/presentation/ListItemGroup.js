@@ -1,11 +1,16 @@
 import React, {PropTypes} from 'react';
 import {ListGroup} from 'react-bootstrap';
 
-const ListItemGroup = ( {stats, statsOrder, StatListItemContainer} ) => {
+const ListItemGroup = ( {stats, statsOrder, prices, StatListItemContainer} ) => {
     return (
         <ListGroup>
         {            
-            statsOrder.map(statKey => <StatListItemContainer key={statKey} statName={statKey} stats={stats} />)   
+            statsOrder.map(
+                statKey => <StatListItemContainer key={statKey} 
+                                                  statName={statKey} 
+                                                  stats={stats}
+                                                  prices={prices} />
+            )   
         }
         </ListGroup>
     );

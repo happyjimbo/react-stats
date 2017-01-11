@@ -2,7 +2,7 @@ import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
 
 // export for testing
 export const initalState = {
-    lastTradePriceOnly : "",
+    lastTradePriceOnly : {},
     stats: {},
     statsOrder: [],
     error: undefined
@@ -21,16 +21,16 @@ export const statReceivedReducer = (state = initalState, action) => {
 }
 
 function receiveStat (state, action) {
-
-    let lastTradePriceOnly = getLastTradePrice(state, action);
+    
     let key = String(action.stat);    
+    let prices = getPrices(state, key, action);
     let statsOrder = getStatsOrder(state, key);
     let stats = getStats(state, key, action);
 
     return Object.assign({}, state, {
         stats,
         statsOrder,
-        lastTradePriceOnly, 
+        prices, 
         error: undefined
     }); 
 }
@@ -63,26 +63,29 @@ function getStatsOrder (state, key) {
     return statsOrder;
 }
 
-function getStats (state, keys, action) {
+function getStats (state, key, action) {
 
     if (action.data !== undefined) {
         return Object.assign({}, state.stats, {
-            [keys]: action.data
+            [key]: action.data
         });
     }
 
     return state;    
 }
 
-function getLastTradePrice (state, action) {
+function getPrices (state, key, action) {
     
-    let lastTradePriceOnly = state.lastTradePriceOnly;
+    let prices = state.prices;
     if (action.data !== undefined) {
         
         let priceFromData = action.data.query.results.quote.LastTradePriceOnly;
         if (priceFromData !== undefined) {
-            lastTradePriceOnly = action.data.query.results.quote.LastTradePriceOnly;
+
+            return Object.assign({}, state.prices, {
+                [key]: priceFromData
+            });
         }
     }
-    return lastTradePriceOnly;
+    return prices;
 }

@@ -6,6 +6,7 @@ const mapStateToProps = (state) => {
     
     let stats = {};
     let statsOrder = [];
+    let prices = "";
 
     if (state.statReceivedReducer !== undefined)
     {
@@ -14,12 +15,14 @@ const mapStateToProps = (state) => {
         {
             stats = statState.stats;
             statsOrder = statState.statsOrder;
+            prices = statState.prices;
         }
     }
 
     return {
         stats,
         statsOrder,
+        prices,
         StatListItemContainer:StatListItemContainer
     }
 }

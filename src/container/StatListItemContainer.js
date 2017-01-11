@@ -6,9 +6,9 @@ const mapStateToProps = (state, props) => {
 
     let statName = props.statName;
     let stat = props.stats[statName];
+    let info = props.prices[statName];
 
-    let info = stat.query.results.quote.LastTradePriceOnly;
-
+    //TODO: refactor this out to be done in the reducer.
     let change = stat.query.results.quote.Change;
     let success = change.charAt(0) === '+';
 
