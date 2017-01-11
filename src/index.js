@@ -9,25 +9,29 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import CombineReducers from './reducers/CombineReducers';
 import createLogger from 'redux-logger';
 import {persistStore, autoRehydrate} from 'redux-persist'
-import {storedStats} from './actions/StatsAction';
+import {fetchListOfStats} from './actions/StatsAction';
 
 const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(CombineReducers, undefined, composeEnhancers(
-  applyMiddleware(thunkMiddleware, logger),
-  autoRehydrate()
+	applyMiddleware(thunkMiddleware, logger),
+	autoRehydrate()
 ));
 
+const loadStoredStats = () => {
+	const dispatch = store.dispatch;
+	const state = store.getState();
+	const statsOrder = state.statReceivedReducer.statsOrder;
+
+	dispatch(fetchListOfStats(statsOrder));
+};
+
+persistStore(store, {}, loadStoredStats);
 //persistStore(store).purge();
 
-persistStore(store, {}, () => {
-  let dispatch = store.dispatch;
-  dispatch(storedStats(store.getState()), dispatch);
-});
-
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
 );

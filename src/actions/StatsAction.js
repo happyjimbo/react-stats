@@ -1,18 +1,25 @@
 import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
 import fetch from 'isomorphic-fetch';
 
-// Look at doing this wthout passing in dispatch.
-export function storedStats(state, dispatch) {
 
-    return (dispatch) => { 
-        for (let stat of state.statReceivedReducer.statsOrder) {
+const getStatUrl = (property) => {
+    return `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22${property}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
+}
+
+// export this so that we can access this in the unit tests.
+export const failMessage = () => {
+    return "Unable to retrieve stat, is it a valid value?";
+}
+
+export function fetchListOfStats(stats) {
+    return (dispatch) => {
+        for (let stat of stats) {
             dispatch(fetchStat(stat));
         }
     }
 }
 
 export function fetchStat(stat) {
-
     return (dispatch) => {
         let statUrl = getStatUrl(stat);
 
@@ -34,7 +41,7 @@ function validateResponse(stat, data) {
     return receieveStatFail(stat, failMessage);
 }
 
-export function receieveStat(stat, data) {
+function receieveStat(stat, data) {
     return {
         type: RECEIVE_STAT,
         stat,
@@ -42,18 +49,10 @@ export function receieveStat(stat, data) {
     }
 }
 
-export function receieveStatFail(stat, message) {
+function receieveStatFail(stat, message) {
     return {
         type: RECEIVE_STAT_FAIL,
         stat,
         message: message
     }
-}
-
-export function getStatUrl(property) {
-    return `https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yahoo.finance.quote%20where%20symbol%20in%20(%22${property}%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=`;
-}
-
-export const failMessage = () => {
-    return "Unable to retrieve stat, is it a valid value?";
 }

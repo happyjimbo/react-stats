@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './css/App.css';
 import DialogPopUpContainer from './container/DialogPopUpContainer';
-import StatsLabelContainer from './container/StatsLabelContainer';
 import StatsFormContainer from './container/StatsFormContainer';
 import StatsListGroupContainer from './container/StatsListGroupContainer';
 
@@ -12,7 +11,6 @@ class App extends Component {
 				<StatsFormContainer />
 				<StatsListGroupContainer />			
 				<DialogPopUpContainer />      
-				<StatsLabelContainer />
 			</div>
 		);
 	}

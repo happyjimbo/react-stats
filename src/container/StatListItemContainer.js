@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import ClickListItem from '../presentation/ClickListItem';
 import {DisplayDialogAction} from '../actions/DisplayDialogAction';
-import StatsLabelContainer from './StatsLabelContainer';
 
 const mapStateToProps = (state, props) => {
 
@@ -15,8 +14,7 @@ const mapStateToProps = (state, props) => {
 
     return {
         info,
-        success,
-        StatsLabelContainer
+        success
     }
 }
 

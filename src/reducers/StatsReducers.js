@@ -1,6 +1,7 @@
 import {RECEIVE_STAT, RECEIVE_STAT_FAIL} from '../types/StatsTypes';
 
-const initalState = {
+// export for testing
+export const initalState = {
     lastTradePriceOnly : "",
     stats: {},
     statsOrder: [],
