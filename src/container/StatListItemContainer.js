@@ -9,7 +9,7 @@ const mapStateToProps = (state, props) => {
     let info = props.prices[statName];
 
     //TODO: refactor this out to be done in the reducer.
-    let change = stat.query.results.quote.Change;
+    let change = stat.Change;
     let success = change.charAt(0) === '+';
 
     return {

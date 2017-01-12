@@ -7,6 +7,7 @@ describe('StatPanel', () => {
 
     const statName = "MyStatName";
     const text = "some text";
+    
 
     function setUp(extraProps = undefined) {
 
@@ -26,12 +27,8 @@ describe('StatPanel', () => {
 
     it('compares component to snapshot', () => {
         
-        const displayDetails = {
-            [statName]: false
-        }
-
         const component = renderer.create(
-            <StatPanel statName={statName} displayDetails={displayDetails} />
+            <StatPanel text="hello world" display={true} />
         );
 
         let statPanel = component.toJSON();
@@ -57,10 +54,11 @@ describe('StatPanel', () => {
     });
 
     it ('displays text', () => {
+        
+        const props = { display: true };
+        const { component } = setUp(props);
 
-        const { component } = setUp();
-
-        const containsStatName = component.children().contains(text);
+        const containsStatName = component.find('Panel').children().contains(text);
         expect(containsStatName).toBe(true);
     });
 });

@@ -10,10 +10,15 @@ exports[`StatPanel compares component to snapshot 1`] = `
     }>
     <div
       aria-expanded={null}
-      aria-hidden={true}
-      className="panel-collapse collapse"
+      aria-hidden={false}
+      className="panel-collapse collapse in"
       id={undefined}
-      role={undefined} />
+      role={undefined}>
+      <div
+        className="panel-body">
+        hello world
+      </div>
+    </div>
   </div>
 </div>
 `;

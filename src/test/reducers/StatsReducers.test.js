@@ -54,7 +54,9 @@ describe("StatsReducers", () => {
         
         const response =  {         
             stats: {
-                [stat]: data
+                [stat]: {
+                    LastTradePriceOnly: price
+                }
             },
             statsOrder: [stat],
             prices: {
@@ -79,7 +81,9 @@ describe("StatsReducers", () => {
 
         const state = { 
             stats: {
-                [oldStat]: data
+                [oldStat]: {
+                    LastTradePriceOnly: price
+                }
             },
             statsOrder: [oldStat],
             prices: {
@@ -92,8 +96,12 @@ describe("StatsReducers", () => {
         
         const response =  {         
             stats: {
-                [oldStat]: data,
-                [newStat]: data
+                [oldStat]: {
+                    LastTradePriceOnly: price
+                },
+                [newStat]: {
+                    LastTradePriceOnly: price
+                }
             },
             statsOrder: [oldStat, newStat],
              prices: {

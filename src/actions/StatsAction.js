@@ -39,7 +39,7 @@ export function fetchStat(stat) {
 
 function validateResponse(stat, data) {
     if (data.query !== undefined) {
-        let name = data.query.results.quote.Name;
+        let name = data.Name;
         if (name !== null) {
             return receieveStat(stat, data);
         }

@@ -6,6 +6,7 @@ export const initalState = {
     stats: {},
     statsOrder: [],
     displayDetailedStat: {},
+    prices: {},
     error: undefined
 }
 
@@ -36,10 +37,10 @@ function displayDetailedStat(state, action) {
 
 function receiveStat (state, action) {
     
-    let key = String(action.stat);    
-    let prices = getPrices(state, key, action);
+    let key = String(action.stat);
     let statsOrder = getStatsOrder(state, key);
     let stats = getStats(state, key, action);
+    let prices = getPrices(state, key, stats);
 
     return Object.assign({}, state, {
         stats,
@@ -72,27 +73,26 @@ function getStatsOrder (state, key) {
 
 function getStats (state, key, action) {
 
-    if (action.data !== undefined) {
-        return Object.assign({}, state.stats, {
-            [key]: action.data
-        });
+    if (action.data !== undefined && action.data.query !== undefined) {
+        let quote = action.data.query.results.quote;
+        if (quote !== undefined) {
+            return Object.assign({}, state.stats, {
+                [key]: quote
+            });
+        }
     }
 
     return state;    
 }
 
-function getPrices (state, key, action) {
+function getPrices (state, key, stats) {
     
-    let prices = state.prices;
-    if (action.data !== undefined) {
-        
-        let priceFromData = action.data.query.results.quote.LastTradePriceOnly;
-        if (priceFromData !== undefined) {
-
-            return Object.assign({}, state.prices, {
-                [key]: priceFromData
-            });
-        }
+    if (stats[key] !== undefined) {
+        const price = stats[key].LastTradePriceOnly;
+        return Object.assign({}, state.prices, {
+            [key]: price
+        });
     }
-    return prices;
+
+    return state.prices;
 }
