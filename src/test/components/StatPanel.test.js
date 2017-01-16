@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import StatPanel from '../../presentation/StatPanel';
+import StatPanel from '../../components/StatPanel';
 import renderer from 'react-test-renderer';
 
 describe('StatPanel', () => {

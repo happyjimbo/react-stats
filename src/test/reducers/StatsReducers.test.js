@@ -104,7 +104,7 @@ describe("StatsReducers", () => {
                 }
             },
             statsOrder: [oldStat, newStat],
-             prices: {
+            prices: {
                 [oldStat]: price,
                 [newStat]: price
             },

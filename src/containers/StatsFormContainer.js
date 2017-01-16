@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import StateForm from '../presentation/StateForm';
+import StateForm from '../components/StateForm';
 import {fetchStat} from '../actions/StatsAction';
 
 let inputValue;

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ListItemGroup from '../presentation/ListItemGroup';
+import ListItemGroup from '../components/ListItemGroup';
 import StatListItemContainer from './StatListItemContainer';
 import StatPanelContainer from './StatPanelContainer';
 

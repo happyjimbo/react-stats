@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import ClickListItem from '../presentation/ClickListItem';
+import ClickListItem from '../components/ClickListItem';
 import {displayDetailedStats} from '../actions/StatsAction';
 
 const mapStateToProps = (state, props) => {

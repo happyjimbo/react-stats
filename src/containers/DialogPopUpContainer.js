@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {DisplayDialogAction} from '../actions/DisplayDialogAction';
-import DialogPopUp from '../presentation/DialogPopUp';
+import DialogPopUp from '../components/DialogPopUp';
 
 const mapStateToProps = (state) =>  {
     return {

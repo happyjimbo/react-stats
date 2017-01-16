@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import StatPanel from '../presentation/StatPanel';
+import StatPanel from '../components/StatPanel';
 
 const mapStateToProps = (state, props) => {
 

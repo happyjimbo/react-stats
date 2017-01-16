@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import ClickListItem from '../../presentation/ClickListItem';
+import ClickListItem from '../../components/ClickListItem';
 import renderer from 'react-test-renderer';
 
 describe('ClickListItem', () => {
