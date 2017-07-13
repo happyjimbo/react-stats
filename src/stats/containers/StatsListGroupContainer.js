@@ -21,8 +21,10 @@ const mapStateToProps = (state) => {
         
         // Use the keys so that we're not trying to render items before we recieve data,
         // however sort these based on the statsOrder.
-        const statsOrder = statState.statsOrder
-        keys = statsOrder
+        keys = statState.statsOrder
+
+        const itemKeys = Object.keys(items)
+        itemKeys.forEach(item => !keys.includes(item) ? keys.push(item) : false )
     }    
 
     return {

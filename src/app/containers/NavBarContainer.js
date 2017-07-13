@@ -1,26 +1,19 @@
 import {connect} from 'react-redux'
 import NavBar from '../components/NavBar'
-import * as AppRouter from '../../app/router/AppRouter'
-
-const mapStateToProps = (state) => 
-{
-    const defaultKey = AppRouter.pathName(state.routing)
-    return {  
-        defaultKey
-    }
-}
+import {requestStat} from '../../stats/actions/StatsAction'
     
+let input
+
 const mapDispatchToProps = (dispatch) => ({
-    onSelect : (key) => handleSelectedTab(key, dispatch)
+    handleChange : (change) => input = change,
+    onClick : (key) => handleSelectedTab(dispatch)    
 })
 
-const handleSelectedTab = (key, dispatch) => {
-    
-    AppRouter.updateUrl(key)
-
-    const route = AppRouter.route(key)    
-    dispatch(route)
+const handleSelectedTab = (dispatch) => {
+    if (input != null) {
+        dispatch(requestStat(input))
+    }
 }
 
-const NavBarContainer = connect(mapStateToProps, mapDispatchToProps)(NavBar)
+const NavBarContainer = connect(null, mapDispatchToProps)(NavBar)
 export default NavBarContainer

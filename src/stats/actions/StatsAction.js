@@ -1,10 +1,15 @@
-import {RECEIVE_STAT, RECEIVE_STAT_FAIL, DISPLAY_DETAILED_STAT} from '../consts/StatsActionTypes'
+import {RECEIVE_STAT, RECEIVE_STAT_FAIL, DISPLAY_DETAILED_STAT, REQUEST_STAT} from '../consts/StatsActionTypes'
 
 // export this so that we can access this in the unit tests.
 export const failMessage = () => "Unable to retrieve stat, is it a valid value?"
 
 export const displayDetailedStats = stat => ({
     type: DISPLAY_DETAILED_STAT,
+    stat
+})
+
+export const requestStat = stat => ({
+    type: REQUEST_STAT,
     stat
 })
 
