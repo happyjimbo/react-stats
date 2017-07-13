@@ -1,0 +1,15 @@
+.Header {
+	background-color: #2F69C6;
+	height: 4em;
+	color: white;
+
+	span {
+		display: inline-block;
+
+		p {
+			font-size: 2em;		
+			position: relative;
+			top: 5px;
+		}
+	}	
+}

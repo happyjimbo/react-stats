@@ -1,37 +1,52 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import App from './App';
-import './css/index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import CombineReducers from './reducers/CombineReducers';
-import createLogger from 'redux-logger';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import createLogger from 'redux-logger'
+import App from './app/components/App'
+import CombineReducers from './shared/reducers/CombineReducers'
+import * as AppSaga from './app/saga/AppSaga'
+import * as StatsSaga from './stats/sagas/StatsSaga'
 import {persistStore, autoRehydrate} from 'redux-persist'
-import {fetchListOfStats} from './actions/StatsAction';
+import {INITAL_LOAD} from './app/consts/AppConsts'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { Router, Route, hashHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
+import * as AppRouter from './app/router/AppRouter'
 
-const logger = createLogger();
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const logger = createLogger()
+const sagaMiddleware = createSagaMiddleware()
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(CombineReducers, undefined, composeEnhancers(
-	applyMiddleware(thunkMiddleware, logger),
+	applyMiddleware(sagaMiddleware, logger),
 	autoRehydrate()
-));
+))
 
-const loadStoredStats = () => {
-	const dispatch = store.dispatch;
-	const state = store.getState();
-	const statsOrder = state.statReceivedReducer.statsOrder;
+const loadStoredStats = () => {	
+	sagaMiddleware.run(AppSaga.init)
+	sagaMiddleware.run(StatsSaga.init)
+	store.dispatch({ type:INITAL_LOAD })
+}
 
-	dispatch(fetchListOfStats(statsOrder));
-};
+persistStore(store, {blacklist: ['routing']}, loadStoredStats)
+//persistStore(store).purge()
 
-persistStore(store, {}, loadStoredStats);
-//persistStore(store).purge();
+// Create an enhanced history that syncs navigation events with the store
+const history = syncHistoryWithStore(hashHistory, store)
+
+let purged = false
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		 <Router history={history}>
+			<div>
+			  <Route path="/" component={App} >
+			  	<Route path={AppRouter.index} component={App} />
+			  </Route>
+			  </div>
+		</Router>
 	</Provider>,
 	document.getElementById('root')
-);
+)

@@ -1,0 +1,39 @@
+$border-style: 1px solid #ddd;
+
+.App {	
+
+	text-align: center;
+
+	#Container {
+		text-align: center;
+	}
+
+	.center {
+		margin: auto;
+		width: 98%;
+		max-width: 800px;
+	}
+
+	#panel {
+		background-color: white;
+		border: $border-style;
+	}
+}
+
+// .App-logo {
+//   animation: App-logo-spin infinite 20s linear;
+//   height: 80px;
+// }
+
+// .App-intro {
+//   font-size: large;
+// }
+
+// .App-toolbar {
+//   text-align: center;
+// }
+
+// @keyframes App-logo-spin {
+//   from { transform: rotate(0deg); }
+//   to { transform: rotate(360deg); }
+// }

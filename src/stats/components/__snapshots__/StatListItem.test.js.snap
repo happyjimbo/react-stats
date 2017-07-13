@@ -1,0 +1,68 @@
+exports[`StatListItem compares component to snapshot 1`] = `
+<div
+  className="StatListItem">
+  <button
+    className="list-group-item"
+    id="group"
+    onClick={[Function]}
+    type="button">
+    <h4
+      className="list-group-item-heading">
+      MyStatName
+    </h4>
+    <p
+      className="list-group-item-text">
+      <p
+        style={
+          Object {
+            "color": "#ccc",
+            "float": "right",
+            "fontSize": "12",
+            "position": "absolute",
+            "right": "5px",
+            "top": "5px",
+          }
+        }>
+        Graph ▼
+      </p>
+      <p>
+        Today: 
+        <span
+          className="label label-default">
+          this is today
+        </span>
+         
+        <span
+          className="label label-default">
+          % 
+           than yesterday
+        </span>
+      </p>
+      <p>
+        Yesterday: 
+        <span
+          className="label label-default">
+          yesterday, all my troubles seemed so far away
+        </span>
+         last week: 
+        <span
+          className="label label-primary">
+          last week
+        </span>
+         
+        <span
+          className="label label-default">
+          %
+        </span>
+      </p>
+      <p>
+        Week average: 
+        <span
+          className="label label-info">
+          week average
+        </span>
+      </p>
+    </p>
+  </button>
+</div>
+`;
