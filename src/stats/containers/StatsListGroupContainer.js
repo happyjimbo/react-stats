@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
         keys = statState.statsOrder
 
         const itemKeys = Object.keys(items)
-        itemKeys.forEach(item => !keys.includes(item) ? keys.push(item) : false )
+        itemKeys.forEach(item => !keys.includes(item) ? keys.unshift(item) : false )
     }    
 
     return {
