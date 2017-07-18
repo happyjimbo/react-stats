@@ -1,6 +1,5 @@
 import {call, put, takeEvery, select} from 'redux-saga/effects'
 import {INITAL_LOAD, ALL_STAT_TYPES} from '../consts/AppConsts'
-import * as StatTypes from '../../stats/consts/StatTypes'
 import json from '../../client.json'
 import * as AppRouter from '../../app/router/AppRouter'
 

@@ -1,6 +1,5 @@
 import {createSelector} from 'reselect'
-import * as StatTypes from '../consts/StatTypes'
-import {numberAsDollar, numberWithCommas} from '../../utils/Number'
+import {numberAsDollar} from '../../utils/Number'
 
 // Selector prevents this data from being computed everytime the container
 // is notified of a state change and will only recalculate when needed.

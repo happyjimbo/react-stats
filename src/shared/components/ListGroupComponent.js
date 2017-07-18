@@ -16,20 +16,12 @@ const ListGroupComponent = ( {  items,
                 keys.map(itemKey =>
                     <div key={itemKey} >                         
                         <ListItem statName={itemKey} statType={itemType} stats={items} />
-                        { SelectablePanel !== undefined ? panel(SelectablePanel, itemKey, items, displayDetails) : <div></div> }                        
+                        <SelectablePanel statName={itemKey}  stats={items} displayDetails={displayDetails} />
                     </div>                           
                 )   
             }
             </ListGroup>
         </div>
-    )
-}
-
-const panel = (SelectablePanel, itemKey, items, displayDetails) => {
-    return (
-        <SelectablePanel statName={itemKey} 
-                        stats={items}
-                        displayDetails={displayDetails} />
     )
 }
 

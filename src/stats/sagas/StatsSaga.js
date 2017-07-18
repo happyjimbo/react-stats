@@ -1,7 +1,6 @@
 import {FETCH_STATS, REQUEST_STAT} from '../consts/StatsActionTypes'
 import {call, put, fork, select, takeLatest} from 'redux-saga/effects'
 import {delay} from 'redux-saga'
-//import json from '../../client.json'
 import * as StatTypes from '../consts/StatTypes'
 import * as Service from '../service/FinanceStatsService'
 import * as StatsAction from '../actions/StatsAction'
@@ -16,9 +15,11 @@ export function* init() {
 
 // methods below are exported only for testing purposes
 
+export const reducer = state => state.statReceivedReducer
+
 export function* fetchStats(action) {
     while(true) {
-        const statsReducer = yield select(state => state.statReceivedReducer)
+        const statsReducer = yield select(reducer)
         const stats = statsReducer.statsOrder
 
         yield call(fetchAllStatData, stats)
@@ -26,9 +27,12 @@ export function* fetchStats(action) {
     }    
 }
 
-export function* fetchAllStatData(stats, statType) {
+export function* fetchAllStatData(stats) {
+    
     for (const stat in stats) {
-        yield fork(fetchStatData, stats[stat])
+        if(stats.hasOwnProperty(stat)) {
+           yield fork(fetchStatData, stats[stat])
+        }
     }
 }
 

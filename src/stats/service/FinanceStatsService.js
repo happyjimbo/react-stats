@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-fetch'
-import {STATS_AMOUNT} from '../consts/StatTypes'
 
 const getStatUrl = (symbol, days) => `http://localhost:4000/finance?symbol=${symbol}&days=${days}`
 

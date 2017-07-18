@@ -16,7 +16,7 @@ const StatLineGraphSelector = () => {
             today.setDate(today.getDate() - STATS_AMOUNT)
 
             if (items !== undefined) {
-                items.map(stat => {
+                items.forEach(stat => {
                     today.setDate(today.getDate() + 1)
                     data.push({
                         x: new Date(today),

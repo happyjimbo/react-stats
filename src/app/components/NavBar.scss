@@ -6,6 +6,10 @@
     .navbar-default {
         background-color: $blueColor;
         border-color: $greyColor;
+
+        .navbar-brand {
+          color: white;
+        }
     }
 
     @media (max-width: 767px) {

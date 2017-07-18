@@ -1,6 +1,5 @@
 import {RECEIVE_STAT, RECEIVE_STAT_FAIL, DISPLAY_DETAILED_STAT} from '../consts/StatsActionTypes'
 import {ALL_STAT_TYPES} from '../../app/consts/AppConsts'
-import * as StatTypes from '../consts/StatTypes'
 
 // export for testing
 export const initialState = {
