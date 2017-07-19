@@ -1,4 +1,4 @@
-import makeCalculateGraphData from './StatLineGraphSelector'
+import StatLineGraphSelector from './StatLineGraphSelector'
 import {STATS_AMOUNT} from '../consts/StatTypes';
 
 describe("StatLineGraphSelector", () => {
@@ -8,12 +8,12 @@ describe("StatLineGraphSelector", () => {
     const items = [100, 200, 300, 400, 500, 600, 700, 800, 900]
     const props = {items}
 
-    const selector = makeCalculateGraphData()
-    const graphData = selector(stats, props)
+    const selector = StatLineGraphSelector()
+    const graphDataSelector = selector(stats, props)
 
     it ("has y values that match the items", () => {
 
-        const values = graphData.values
+        const values = graphDataSelector.graphData.values
 
         for (let i = 0; i < values.length; i++) {        
             const y = values[i].y
@@ -23,7 +23,7 @@ describe("StatLineGraphSelector", () => {
 
      it ("has x values that are the correct time", () => {
 
-        const values = graphData.values
+        const values = graphDataSelector.graphData.values
 
         const today = new Date()
         today.setDate(today.getDate() - STATS_AMOUNT)

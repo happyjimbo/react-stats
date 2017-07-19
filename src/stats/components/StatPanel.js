@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react'
 import {Panel} from 'react-bootstrap'
 import LineGraphContainer from '../../shared/containers/LineGraphContainer'
-import StatLineGraphSelector from '../selectors/StatLineGraphSelector'
 import './StatPanel.css'
 
 const StatPanel = ({panelStats, statName, display}) => {
@@ -9,7 +8,7 @@ const StatPanel = ({panelStats, statName, display}) => {
     return (
         <div className="StatPanel">
             <Panel collapsible expanded={display}>
-                <LineGraphContainer items={panelStats} statName={statName} selector={StatLineGraphSelector} />
+                <LineGraphContainer items={panelStats} statName={statName} />
             </Panel>
         </div>
     )
