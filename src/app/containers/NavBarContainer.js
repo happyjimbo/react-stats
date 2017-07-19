@@ -2,16 +2,13 @@ import {connect} from 'react-redux'
 import NavBar from '../components/NavBar'
 import {requestStat} from '../../stats/actions/StatsAction'
     
-let input
-
 const mapDispatchToProps = (dispatch) => ({
-    handleChange : (change) => input = change,
-    onClick : (key) => handleSelectedTab(dispatch)    
+    onClick : (textInput) => handleSelectedTab(dispatch, textInput)    
 })
 
-const handleSelectedTab = (dispatch) => {
-    if (input != null) {
-        dispatch(requestStat(input))
+const handleSelectedTab = (dispatch, textInput) => {
+    if (textInput != null && textInput != "") {
+        dispatch(requestStat(textInput))
     }
 }
 

@@ -4,6 +4,8 @@ import './NavBar.css'
 
 const NavBar = ({ onClick, handleChange }) => {
 
+    let textInput = ""
+
     return (
         <div className="NavBar">
             <Navbar>
@@ -15,11 +17,11 @@ const NavBar = ({ onClick, handleChange }) => {
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Navbar.Form pullLeft>
-                        <FormGroup onChange={e => handleChange(e.target.value)}>
+                        <FormGroup onChange={e => textInput = e.target.value}>
                             <FormControl type="text" placeholder="stock" />
                         </FormGroup>
                         {' '}
-                        <Button type="submit" onClick={onClick}>Search</Button>
+                        <Button type="submit" onClick={e => onClick(textInput)}>Search</Button>
                     </Navbar.Form>
                 </Navbar.Collapse>
             </Navbar>

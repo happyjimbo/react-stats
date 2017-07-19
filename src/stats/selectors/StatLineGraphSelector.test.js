@@ -1,4 +1,5 @@
 import StatLineGraphSelector from './StatLineGraphSelector'
+import {arrayTest} from './StatLineGraphSelector'
 import {STATS_AMOUNT} from '../consts/StatTypes';
 
 describe("StatLineGraphSelector", () => {
@@ -40,4 +41,16 @@ describe("StatLineGraphSelector", () => {
         }        
     })
 
+    it ("has layout items", () => {
+        expect(graphDataSelector.width).toBeTruthy()
+        expect(graphDataSelector.height).toBeTruthy()
+        expect(graphDataSelector.margins).toBeTruthy()
+        expect(graphDataSelector.maxRange).toBeTruthy()
+    })
+
+    it ("has scale items", () => {
+        expect(graphDataSelector.xScale).toBeTruthy()
+        expect(graphDataSelector.tickValues).toBeTruthy()
+        expect(graphDataSelector.tickFormat).toBeTruthy()
+    })
 })
