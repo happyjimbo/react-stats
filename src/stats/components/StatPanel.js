@@ -2,19 +2,13 @@ import React, {PropTypes} from 'react'
 import {Panel} from 'react-bootstrap'
 import LineGraphContainer from '../../shared/containers/LineGraphContainer'
 import StatLineGraphSelector from '../selectors/StatLineGraphSelector'
+import './StatPanel.css'
 
 const StatPanel = ({panelStats, statName, display}) => {
 
-    const style = {
-        border: 'none',
-        margin: 'auto',
-        width: "100%",
-        marginBottom: '1em'
-    }
-
     return (
-        <div>
-            <Panel collapsible expanded={display} style={style}>
+        <div className="StatPanel">
+            <Panel collapsible expanded={display}>
                 <LineGraphContainer items={panelStats} statName={statName} selector={StatLineGraphSelector} />
             </Panel>
         </div>

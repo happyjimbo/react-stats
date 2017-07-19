@@ -1,6 +1,8 @@
 .StatPanel {
-    border: 'none';
-    margin : 'auto';
-    width : '100%';
-    margin-bottom: '1em';
+    .panel {
+        border: 0;
+        margin : 'auto';
+        width : '100%';
+        margin-bottom: '1em';
+    }
 }

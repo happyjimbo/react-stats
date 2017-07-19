@@ -41,13 +41,13 @@ describe("AppRouter", () => {
     })
 
     it ("route should return REVENUE when invalid path is passed", () => {            
-        let action = route("oinsdiofnsdoisn")
+        const action = route("oinsdiofnsdoisn")
         expect(action).toEqual({type: FETCH_STATS, statType:StatTypes.INDEX})
     });
 
     it ("route should return the correct FETCH_STATS action", () => {
         
-        let action = route(index)
+        const action = route(index)
         expect(action).toEqual({type: FETCH_STATS, statType:StatTypes.INDEX})
     })
 })

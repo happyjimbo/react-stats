@@ -52,16 +52,16 @@ const makeGetStatsListItemData = () => {
 
 const calculateStyles = (today, yesterday, lastweek) => {
 
-    let todayDiff = Math.round(((today - yesterday) / yesterday) * 100)
-    todayDiff = todayDiff || 0
+    const todayValue = Math.round(((today - yesterday) / yesterday) * 100)
+    const todayDiff = todayValue || 0
 
     const todaySuccess = todayDiff > 0
     
     const todayStyle = todaySuccess ? "success" : "warning"
     const todayHigherOrLower = todaySuccess ? "higher" : "lower"
 
-    let lastWeekDiff = Math.round(((yesterday - lastweek) / lastweek) * 100)
-    lastWeekDiff = lastWeekDiff || 0
+    const lastWeekValue = Math.round(((yesterday - lastweek) / lastweek) * 100)
+    const lastWeekDiff = lastWeekValue || 0
     const lastWeeksuccess = lastWeekDiff > 0
     
     const lastWeekStyle = lastWeeksuccess ? "success" : "danger"

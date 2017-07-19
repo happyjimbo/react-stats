@@ -42,7 +42,7 @@ describe('StatsSaga', () => {
         const generator = Saga.fetchAllStatData(stats, statType)
 
         for (const stat in stats) {
-            let fetchStatData = fork(Saga.fetchStatData, stats[stat])
+            const fetchStatData = fork(Saga.fetchStatData, stats[stat])
             expect(generator.next().value).toEqual(fetchStatData)    
         }
 

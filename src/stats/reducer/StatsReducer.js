@@ -27,7 +27,7 @@ export const statReceivedReducer = (state = initialState, action) => {
 }
 
 const allStatTypes = (state, action) => {
-    let statsOrder = action.json.stats.slice(0) // copy array
+    const statsOrder = action.json.stats.slice() // copy array
 
     return Object.assign({}, state, {
         statsOrder
@@ -50,27 +50,21 @@ const receiveStat = (state, action) => {
     const key = String(action.stat)
     const statType = action.statType
     
-    let stats = getStatData(state, key, statType, action)
+    const stats = getStatData(state, key, statType, action)
     
-    let newState = Object.assign({}, state, {
+    return Object.assign({}, state, {
         statType,
         stats, 
         error: undefined
     })
-
-    newState = Object.assign({}, newState, {
-        stats
-    });
-
-    return newState
 }
 
 const getStatData = (state, key, statType, action) => {
 
     if (action.data !== undefined) {
 
-        let statData = action.data
-        statData = statData.map(stat => stat.close)
+        const data = action.data
+        const statData = data.map(stat => stat.close)
                 
         return Object.assign({}, state.stats, {
             [key]: statData

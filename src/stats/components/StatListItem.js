@@ -9,19 +9,11 @@ const StatListItem = (props) => {
     const { todayStyle, todayHigherOrLower, todayDiff } = props
     const { lastWeekStyle, lastWeekHigherOrLower, lastWeekDiff } = props
 
-    const statTypeStyle = {
-        position : 'absolute',
-        float: 'right',
-        top: '5px',
-        right: '5px',
-        fontSize: '12',
-        color: '#ccc'
-    }
-
     return (
         <div className="StatListItem">
             <ListGroupItem onClick={e => click(statName)} header={statName} id="group">
-                <p style={statTypeStyle}>Graph ▼</p>
+                <p id="removeStyle">Remove</p>
+                <p id="graphStyle" >Graph ▼</p>
 
                 <p>Today: <Label bsStyle={todayStyle}>{todayStat}</Label> <Label bsStyle={todayStyle}>{todayDiff}% {todayHigherOrLower} than yesterday</Label></p>
 
