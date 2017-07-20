@@ -13,16 +13,11 @@ exports[`StatListItem compares component to snapshot 1`] = `
     <p
       className="list-group-item-text">
       <p
-        style={
-          Object {
-            "color": "#ccc",
-            "float": "right",
-            "fontSize": "12",
-            "position": "absolute",
-            "right": "5px",
-            "top": "5px",
-          }
-        }>
+        id="removeStyle">
+        Remove
+      </p>
+      <p
+        id="graphStyle">
         Graph ▼
       </p>
       <p>

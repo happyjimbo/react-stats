@@ -1,0 +1,57 @@
+exports[`App compares component to snapshot 1`] = `
+<div
+  className="NavBar">
+  <nav
+    className="navbar navbar-default">
+    <div
+      className="container">
+      <div
+        className="navbar-header">
+        <span
+          className="navbar-brand">
+          Stocks App
+        </span>
+        <button
+          className="navbar-toggle collapsed"
+          onClick={[Function]}
+          type="button">
+          <span
+            className="sr-only">
+            Toggle navigation
+          </span>
+          <span
+            className="icon-bar" />
+          <span
+            className="icon-bar" />
+          <span
+            className="icon-bar" />
+        </button>
+      </div>
+      <div
+        aria-expanded={null}
+        className="navbar-collapse collapse">
+        <div
+          className="navbar-form navbar-left">
+          <div
+            className="form-group"
+            onChange={undefined}>
+            <input
+              className="form-control"
+              id={undefined}
+              placeholder="stock"
+              type="text" />
+          </div>
+           
+          <button
+            className="btn btn-default"
+            disabled={false}
+            onClick={undefined}
+            type="submit">
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+`;

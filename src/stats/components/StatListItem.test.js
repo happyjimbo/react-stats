@@ -34,10 +34,9 @@ describe('StatListItem', () => {
 
         const statListItem = component.toJSON()
         expect(statListItem).toMatchSnapshot()
-
     })
 
-    it ('runs click callback when clicked, setting value to true', () => {
+    it ('runs callback when listGroupItem clicked, setting value to true', () => {
 
         let clicked = false
         const click = () => { clicked = true; }
@@ -47,7 +46,8 @@ describe('StatListItem', () => {
         
         expect(clicked).toBe(false)
 
-        component.children().simulate('click')
+        const listGroupItem = component.find('ListGroupItem')
+        listGroupItem.simulate('click')
         
         expect(clicked).toBe(true)
     })
