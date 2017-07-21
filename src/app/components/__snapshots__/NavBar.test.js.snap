@@ -1,4 +1,4 @@
-exports[`App compares component to snapshot 1`] = `
+exports[`NavBar compares component to snapshot 1`] = `
 <div
   className="NavBar">
   <nav
@@ -34,7 +34,7 @@ exports[`App compares component to snapshot 1`] = `
           className="navbar-form navbar-left">
           <div
             className="form-group"
-            onChange={undefined}>
+            onChange={[Function]}>
             <input
               className="form-control"
               id={undefined}
@@ -45,7 +45,7 @@ exports[`App compares component to snapshot 1`] = `
           <button
             className="btn btn-default"
             disabled={false}
-            onClick={undefined}
+            onClick={[Function]}
             type="submit">
             Search
           </button>
