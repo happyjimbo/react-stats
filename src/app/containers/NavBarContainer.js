@@ -7,7 +7,7 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 const handleSelectedTab = (dispatch, textInput) => {
-    if (textInput != null && textInput != "") {
+    if (textInput != null && textInput !== "") {
         dispatch(requestStat(textInput))
     }
 }

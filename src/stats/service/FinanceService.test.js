@@ -1,8 +1,8 @@
-import * as StatsService from './FinanceStatsService'
+import * as FinanceService from './FinanceStatsService'
 import * as StatTypes from '../consts/StatTypes'
 import nock from 'nock';
 
-describe('StatsService', () => {
+describe('FinanceService', () => {
 
     const game = 'monkey'
     const statType = StatTypes.DAU
@@ -28,7 +28,7 @@ describe('StatsService', () => {
         .get('/')
         .reply(200, mockData);
 
-        return StatsService.fetchStatData(statsData)
+        return FinanceService.fetchStatData(statsData)
         .then(data => { 
             expect(data).toEqual(mockData);
         });

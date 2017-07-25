@@ -15,11 +15,7 @@ describe("StatLineGraphSelector", () => {
     it ("has y values that match the items", () => {
 
         const values = graphDataSelector.graphData.values
-
-        for (let i = 0; i < values.length; i++) {        
-            const y = values[i].y
-            expect(y).toEqual(items[i])
-        }        
+        values.forEach((value, i) => expect(value.y).toEqual(items[i]))
     })
 
      it ("has x values that are the correct time", () => {
@@ -29,16 +25,14 @@ describe("StatLineGraphSelector", () => {
         const today = new Date()
         today.setDate(today.getDate() - STATS_AMOUNT)
 
-        for (let i = 0; i < values.length; i++) {     
-
+        values.forEach(value => {
             today.setDate(today.getDate() + 1)
-            const x = values[i].x   
-
-            const date = new Date(x)
+            
+            const date = new Date(value.x)
             const day = date.getDay()
             
             expect(day).toEqual(today.getDay())
-        }        
+        })
     })
 
     it ("has layout items", () => {

@@ -1,36 +1,13 @@
 import express from 'express'
-import session from 'express-session'
-import RedisStore from 'connect-redis'
-import json from '../tokens.json'
 import Finance from './api/Finance'
 
 let app = express()
-
-let cookie = {		
-	secure: false, 
-	maxAge: 604800000 // 7 days
-}
-
-let Redis = RedisStore(session)
-
-const redisOptions = {
-	host: 'redis',
-	port: 6379
-}
-
-app.use(session({
-	store: new Redis(redisOptions),
-	secret: json.sessionSecret,
-	resave: false,
-  	saveUninitialized: true,
-	cookie
-}))
 
 app.use((req, res, next) => {
 
 	let corsOrigin = req.headers.origin
 
-	if ( process.env.ENVIRONMENT == 'production' ) {
+	if (process.env.ENVIRONMENT == 'production' ) {
 		corsOrigin = process.env.CORS
 	}
 
