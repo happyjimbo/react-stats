@@ -20,5 +20,5 @@ app.use((req, res, next) => {
 app.get('/finance', Finance)
 
 app.listen(4000, () => {
-	console.log('Stats App listening on port 4000!')
+	console.log('Stocks App listening on port 4000!')
 })

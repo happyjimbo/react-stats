@@ -30,7 +30,7 @@ const StatLineGraphSelector = () => {
                 tickFormat
             })
         }
-        return null
+        return {}
     }) 
 }
 

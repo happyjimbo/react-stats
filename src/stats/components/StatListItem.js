@@ -5,15 +5,17 @@ import './StatListItem.css'
 const StatListItem = (props) => {
 
     const { todayStat, yesterdayStat, weekAverageStat, yesterdayLastWeekStat } = props
-    const { statName, click } = props
+    const { statName, click, displayDetail } = props
     const { todayStyle, todayHigherOrLower, todayDiff } = props
     const { lastWeekStyle, lastWeekHigherOrLower, lastWeekDiff } = props
+
+    const arrow = displayDetail ? '\u25B2' : '\u25BC'
 
     return (
         <div className="StatListItem">
             <ListGroupItem onClick={e => click(statName)} header={statName} id="group">
                 <p id="removeStyle">Remove</p>
-                <p id="graphStyle" >Graph ▼</p>
+                <p id="graphStyle" >Graph {arrow}</p>
 
                 <p>Today: <Label bsStyle={todayStyle}>{todayStat}</Label> <Label bsStyle={todayStyle}>{todayDiff}% {todayHigherOrLower} than yesterday</Label></p>
 

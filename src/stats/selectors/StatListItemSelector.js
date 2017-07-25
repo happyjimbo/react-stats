@@ -6,13 +6,13 @@ import {numberAsDollar} from '../../utils/Number'
 const makeGetStatsListItemData = () => {
 
     const getStats = (state) => state.statReceivedReducer.stats
+    const getDisplayDetail = (state, props) => state.statReceivedReducer.displayDetailedStat[props.statName]
     const getStatData = (state, props) => getStats(state)[props.statName]
     const getStatType = (state, props) => props.statType
-    const getStatName = (state, props) => props.statName
     
     return createSelector(
-        [getStatData, getStatType], 
-        (statData, statType) => {
+        [getStatData, getStatType, getDisplayDetail], 
+        (statData, statType, displayDetail) => {
 
             if (statData != null && statData.length > 0) {            
                 
@@ -41,7 +41,8 @@ const makeGetStatsListItemData = () => {
                     todayStat,
                     yesterdayStat,
                     yesterdayLastWeekStat,
-                    weekAverageStat
+                    weekAverageStat,
+                    displayDetail
                 })
             } else {
                 return {}
