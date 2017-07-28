@@ -5,14 +5,18 @@ import {numberAsDollar} from '../../utils/Number'
 // is notified of a state change and will only recalculate when needed.
 const makeGetStatsListItemData = () => {
 
-    const getStats = (state) => state.statReceivedReducer.stats
+    const getStats = (state) => state.statReceivedReducer.stats    
+    const getLoading = (state, props) => state.statReceivedReducer.loading[props.statName]
+    const getError = (state, props) => state.statReceivedReducer.errors[props.statName]
     const getDisplayDetail = (state, props) => state.statReceivedReducer.displayDetailedStat[props.statName]
     const getStatData = (state, props) => getStats(state)[props.statName]
     const getStatType = (state, props) => props.statType
     
     return createSelector(
-        [getStatData, getStatType, getDisplayDetail], 
-        (statData, statType, displayDetail) => {
+        [getStatData, getStatType, getDisplayDetail, getLoading, getError], 
+        (statData, statType, displayDetail, loading, error) => {
+
+            let displayLoader = true
 
             if (statData != null && statData.length > 0) {            
                 
@@ -37,15 +41,22 @@ const makeGetStatsListItemData = () => {
                 const weekAverage = weekTotal / 7            
                 const weekAverageStat = decorate(weekAverage)
 
+                const arrow = displayDetail ? '\u25B2' : '\u25BC'
+                displayLoader = loading
+
                 return Object.assign({}, calculateStyles(today, yesterday, lastweek), {    
                     todayStat,
                     yesterdayStat,
                     yesterdayLastWeekStat,
                     weekAverageStat,
-                    displayDetail
+                    arrow,
+                    displayLoader,
+                    error
                 })
             } else {
-                return {}
+                return {
+                    displayLoader
+                }
             }
         }
     )

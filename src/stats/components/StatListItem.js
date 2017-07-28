@@ -1,20 +1,26 @@
 import React, {PropTypes} from 'react'
 import {ListGroupItem, Label} from 'react-bootstrap'
 import './StatListItem.css'
+import './Loader.css'
 
 const StatListItem = (props) => {
 
     const { todayStat, yesterdayStat, weekAverageStat, yesterdayLastWeekStat } = props
-    const { statName, click, displayDetail } = props
+    const { statName, selectClick, removeClick, arrow, displayLoader, error } = props
     const { todayStyle, todayHigherOrLower, todayDiff } = props
     const { lastWeekStyle, lastWeekHigherOrLower, lastWeekDiff } = props
 
-    const arrow = displayDetail ? '\u25B2' : '\u25BC'
+    const loader = displayLoader ? "loader" : ""
 
     return (
         <div className="StatListItem">
-            <ListGroupItem onClick={e => click(statName)} header={statName} id="group">
-                <p id="removeStyle">Remove</p>
+
+            <ListGroupItem onClick={e => selectClick(statName)} header={statName} id="group">
+                            
+                <div className={loader}></div> 
+                {error ? <p id="error">Error, trying again</p> : <div></div>}
+
+                <a id="removeStyle" onClick={e => removeClick(statName, e)}>Remove</a>
                 <p id="graphStyle" >Graph {arrow}</p>
 
                 <p>Today: <Label bsStyle={todayStyle}>{todayStat}</Label> <Label bsStyle={todayStyle}>{todayDiff}% {todayHigherOrLower} than yesterday</Label></p>

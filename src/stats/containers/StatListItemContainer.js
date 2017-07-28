@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {displayDetailedStats} from '../actions/StatsAction';
+import {displayDetailedStats, removeStat} from '../actions/StatsAction';
 import StatListItem from '../components/StatListItem';
 import makeGetStatsListItemData from '../selectors/StatListItemSelector';
 
@@ -11,7 +11,11 @@ const mapMakeToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        click: stat => dispatch(displayDetailedStats(stat))
+        selectClick: stat => dispatch(displayDetailedStats(stat)),
+        removeClick: (stat, e) => {
+            dispatch(removeStat(stat))
+            e.stopPropagation()
+        }
     }
 }
 

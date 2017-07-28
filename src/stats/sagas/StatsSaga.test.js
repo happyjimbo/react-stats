@@ -1,4 +1,4 @@
-import {ALL_STAT_TYPES, FETCH_STATS} from '../consts/StatsActionTypes'
+import {FETCH_STATS} from '../consts/StatsActionTypes'
 import {call, put, select, fork, takeLatest} from 'redux-saga/effects'
 import {delay} from 'redux-saga'
 import * as Saga from './StatsSaga'

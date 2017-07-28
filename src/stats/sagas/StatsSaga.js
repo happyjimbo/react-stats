@@ -1,5 +1,5 @@
-import {FETCH_STATS, REQUEST_STAT} from '../consts/StatsActionTypes'
-import {call, put, fork, select, takeLatest} from 'redux-saga/effects'
+import {FETCH_STATS, REQUEST_STAT, RECEIVE_STAT_FAIL} from '../consts/StatsActionTypes'
+import {call, put, fork, select, takeLatest, takeEvery} from 'redux-saga/effects'
 import {delay} from 'redux-saga'
 import * as StatTypes from '../consts/StatTypes'
 import * as Service from '../service/FinanceStatsService'
@@ -9,7 +9,8 @@ import * as AppConsts from '../../app/consts/AppConsts'
 export function* init() {    
     yield [
         takeLatest(FETCH_STATS, fetchStats),
-        takeLatest(REQUEST_STAT, requestStat)
+        takeLatest(REQUEST_STAT, requestStat),
+        takeEvery(RECEIVE_STAT_FAIL, tryAgain)
     ]       
 }
 
@@ -37,6 +38,11 @@ export function* fetchAllStatData(stats) {
 }
 
 export function* requestStat(action) {
+    yield call(fetchStatData, action.stat)
+}
+
+export function* tryAgain(action) {
+    yield call(delay, AppConsts.TRY_AGAIN_DELAY)
     yield call(fetchStatData, action.stat)
 }
 

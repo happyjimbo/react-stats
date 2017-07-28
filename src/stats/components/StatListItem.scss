@@ -1,5 +1,6 @@
 $position : 5px;
 $fontSize : 12px;
+$red : #dd0000;
 
 .StatListItem {
     margin: auto;
@@ -12,7 +13,7 @@ $fontSize : 12px;
         top: $position;
         right: $position;
         font-size: $fontSize;
-        color: #dd0000;
+        color: $red;
 
         &:hover {
             text-decoration: underline;
@@ -32,4 +33,7 @@ $fontSize : 12px;
         }
     }
 
+    #error {
+        color: $red;
+    }
 }
