@@ -14,27 +14,38 @@ describe("StatsReducer", () => {
         expect(reducer).toEqual(initialState)
     })
 
-    it ("should handle ALL_STAT_TYPES to store our stat types", () => {
+    it ("ALL_STAT_TYPES should return our stats if inital state is the same as the given state", () => {
 
         const stats = ['monkey', 'dog']
 
-        const json = {
-            stats
+        const action = {
+            type: ALL_STAT_TYPES,
+            json: { stats }
+        }
+
+        const reducer = statReceivedReducer(initialState, action)
+
+        const response = Object.assign({}, initialState, { 
+            statsOrder: stats
+        });
+
+        expect(reducer).toEqual(response)
+    })   
+
+    it ("ALL_STAT_TYPES should retun the given state if it's not equal to the inital state", () => {
+
+        const state = {
+            "hello" : "world"
         }
 
         const action = {
             type: ALL_STAT_TYPES,
-            json
+            stats: ['monkey', 'dog']
         }
-
-        const state = {}
+        
         const reducer = statReceivedReducer(state, action)
 
-        const response = { 
-            statsOrder: ['monkey', 'dog']
-        }
-
-        expect(reducer).toEqual(response)
+        expect(reducer).toEqual(state)
     })   
 
     it ("should handle DISPLAY_DETAILED_STAT, setting stat value to true", () => {
@@ -73,7 +84,12 @@ describe("StatsReducer", () => {
             stats: { 
                 [stat]: [ 1, 2, 3]
             },
-            error: undefined 
+            errors : { 
+                [stat]: false 
+            },
+            loading: { 
+                [stat]: false,
+            }
         }
 
         expect(reducer).toEqual(response)
@@ -97,18 +113,30 @@ describe("StatsReducer", () => {
                 [oldStat]: [ 4, 5, 6 ]
             },
             statType,
-            error: undefined
+            errors : { 
+                [oldStat]: false 
+            },
+            loading: { 
+                [oldStat]: false,
+            }
         }
 
-        const reducer = statReceivedReducer(state, action)
+        const reducer = statReceivedReducer(state, action)        
         
         const response =  {         
             stats: {
                 [oldStat]: [ 4, 5, 6], 
                 [newStat]: [ 1, 2, 3 ]
             },
-            statType,
-            error: undefined
+            statType,            
+            errors : { 
+                [oldStat]: false,
+                [newStat]: false
+            },
+            loading: { 
+                [oldStat]: false,
+                [newStat]: false
+            }
         }
 
         expect(reducer).toEqual(response)
@@ -116,19 +144,59 @@ describe("StatsReducer", () => {
     
     it("should handle RECEIVE_STAT_FAIL", () => {
 
-        const message = "fail whale"
-
         const action = {
             type: types.RECEIVE_STAT_FAIL,
-            message
+            stat
         }
 
         const reducer = statReceivedReducer(initialState, action)
 
+        const loading = { [stat]: true }
+        const errors = { [stat]: true }
+
         const response = Object.assign({}, initialState, {
-            error: message, 
+            loading,
+            errors
         })
 
         expect(reducer).toEqual(response)
+    })
+
+    it ("should remove stats", () => {
+
+        const keep = "keep"
+
+        const stats = {
+            [stat]:stat,
+            [keep]:keep            
+        }
+
+        const statsOrder = [stat, keep]
+
+        const displayDetailedStat = {
+            [stat]:stat,
+            [keep]:keep        
+        }
+
+        const state = Object.assign({}, initialState, {
+            stats,
+            statsOrder,
+            displayDetailedStat
+        })
+
+        const action = {
+            type: types.REMOVE_STAT,
+            stat
+        }
+
+        const reducer = statReceivedReducer(state, action)
+
+        const result = Object.assign({}, initialState, {
+            stats: { [keep]:keep },
+            statsOrder: [keep],
+            displayDetailedStat : { [keep]:keep }
+        })
+
+        expect(reducer).toEqual(result)
     })
 })

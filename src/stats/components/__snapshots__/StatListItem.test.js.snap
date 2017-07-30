@@ -12,13 +12,17 @@ exports[`StatListItem compares component to snapshot 1`] = `
     </h4>
     <p
       className="list-group-item-text">
-      <p
-        id="removeStyle">
+      <div
+        className="" />
+      <div />
+      <a
+        id="removeStyle"
+        onClick={[Function]}>
         Remove
-      </p>
+      </a>
       <p
         id="graphStyle">
-        Graph ▼
+        Graph 
       </p>
       <p>
         Today: 

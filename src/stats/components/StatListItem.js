@@ -32,6 +32,7 @@ const StatListItem = (props) => {
             </ListGroupItem>
         </div>
     )
+
 }
 
 StatListItem.PropTypes = {

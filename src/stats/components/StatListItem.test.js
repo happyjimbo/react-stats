@@ -8,7 +8,7 @@ describe('StatListItem', () => {
     const defaultProps = {
         statName: "MyStatName",
         info: "some info",
-        click: () => {},
+        selectClick: () => {},
         todayStat: "this is today",
         yesterdayStat: "yesterday, all my troubles seemed so far away",
         yesterdayLastWeekStat: "last week",
@@ -39,9 +39,9 @@ describe('StatListItem', () => {
     it ('runs callback when listGroupItem clicked, setting value to true', () => {
 
         let clicked = false
-        const click = () => { clicked = true; }
+        const selectClick = () => { clicked = true; }
 
-        const props = { click }
+        const props = { selectClick }
         const { component } = setUp(props)
         
         expect(clicked).toBe(false)

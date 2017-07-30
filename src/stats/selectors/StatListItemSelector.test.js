@@ -4,6 +4,18 @@ describe("StatListItemSelector", () => {
 
     const key = "monkey"
     const props = { statName: key }    
+
+    const displayDetailedStat = {
+        [key]: false
+    } 
+    const loading = {
+        [key]: false
+    }
+
+    const errors = {
+        [key]: false
+    }
+
     let stats = {}
 
     const getStatsListItemData = makeGetStatsListItemData()
@@ -13,17 +25,18 @@ describe("StatListItemSelector", () => {
             [key] : [100, 200, 300, 400, 500, 600, 700, 800, 900]
         }
 
-        const statReceivedReducer = { stats }
+        const statReceivedReducer = { stats, displayDetailedStat, loading, errors }
         const state = { statReceivedReducer }        
         
         return getStatsListItemData(state, props)
     }
 
+
     const lowerThanLastWeek = () => {
         stats = {
             [key] : [900, 800, 700, 600, 500, 400, 300, 200, 100]
         }
-        const statReceivedReducer = { stats }
+        const statReceivedReducer = { stats, displayDetailedStat, loading, errors }
         const reverseState = { statReceivedReducer }
 
         return getStatsListItemData(reverseState, props)
