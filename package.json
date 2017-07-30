@@ -54,7 +54,7 @@
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js server",
     "build": "npm run build-css && react-scripts build",
     "server": "./node_modules/.bin/babel-node ./src/server/Server.js",
     "test": "jest",
@@ -66,7 +66,8 @@
       "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
   },
   "engines": {
-      "node": "8.2.1"
+      "node": "8.2.1",
+      "npm": "5.3.0"
     }
   }
 }
