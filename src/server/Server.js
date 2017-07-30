@@ -19,6 +19,8 @@ app.use((req, res, next) => {
 
 app.get('/finance', Finance)
 
-app.listen(4000, () => {
-	console.log('Stocks App listening on port 4000!')
+app.set('port', (process.env.PORT || 4000));
+
+app.listen(app.get('port'), () => {
+	console.log('Stocks App listening on port ' + app.get('port'))
 })
