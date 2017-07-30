@@ -21,8 +21,6 @@ Server:
 
 - Node: https://nodejs.org/en/
 - Express: https://expressjs.com/
-- Express Session: https://github.com/expressjs/session
-- Connect Redis: https://github.com/tj/connect-redis
 
 The Facebook Create React App was the original starting point which handles the majority of the build config (such as Webpack), the tech above was all added on top of create react app (apart from React):
 - Create React App: https://github.com/facebookincubator/create-react-app

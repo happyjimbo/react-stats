@@ -64,6 +64,9 @@
   "jest": {
     "moduleNameMapper": {
       "\\.(css)$": "<rootDir>/node_modules/jest-css-modules"
+  },
+  "engines": {
+      "node": "8.2.1"
     }
   }
 }
