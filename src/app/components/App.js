@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import Header from './Header'
 import NavBarContainer from '../containers/NavBarContainer'
 import StatsListGroupContainer from '../../stats/containers/StatsListGroupContainer'
 import './App.css'
 
 class App extends Component {
 	render() {
-
-       	const {display, view} = this.props
 
 		return (
 			<div className="App">

@@ -36,8 +36,6 @@ persistStore(store, {blacklist: ['routing']}, loadStoredStats)
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(hashHistory, store)
 
-let purged = false
-
 ReactDOM.render(
 	<Provider store={store}>
 		 <Router history={history}>
