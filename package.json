@@ -54,7 +54,7 @@
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js server",
+    "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
     "server": "./node_modules/.bin/babel-node ./src/server/Server.js",
     "test": "jest",
