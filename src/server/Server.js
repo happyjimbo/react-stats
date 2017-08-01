@@ -19,7 +19,13 @@ app.use((req, res, next) => {
 
 app.get('/finance', Finance)
 
-app.set('port', (process.env.PORT || 4000));
+app.set('port', (process.env.PORT || 8081));
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(app.get('port'), () => {
 	console.log('Stocks App listening on port ' + app.get('port'))
