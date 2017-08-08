@@ -42,8 +42,7 @@ describe('StatsAction', () => {
 
         const expectedAction = {
             type:types.RECEIVE_STAT_FAIL,            
-            stat,
-            message:StatsAction.failMessage
+            stat
         }
 
         expect(response).toEqual(expectedAction)

@@ -33,6 +33,5 @@ const receieveStat = (stat, data) => ({
 
 const receieveStatFail = (stat) => ({
     type: RECEIVE_STAT_FAIL,
-    stat,
-    message: failMessage
+    stat
 })
