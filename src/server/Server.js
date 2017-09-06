@@ -5,28 +5,20 @@ let app = express()
 
 app.use((req, res, next) => {
 
-	let corsOrigin = req.headers.origin
+    let corsOrigin = req.headers.origin
 
-	if (process.env.ENVIRONMENT == 'production' ) {
-		corsOrigin = process.env.CORS
-	}
+    if (process.env.ENVIRONMENT == 'production' ) {
+        corsOrigin = process.env.CORS
+    }
 
-	res.header("Access-Control-Allow-Origin", corsOrigin) 
-	res.header("Access-Control-Allow-Credentials", true)
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-	next()
+    res.header("Access-Control-Allow-Origin", corsOrigin)
+    res.header("Access-Control-Allow-Credentials", true)
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
 })
 
 app.get('/finance', Finance)
 
-app.set('port', (process.env.PORT || 8081));
-
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.listen(app.get('port'), () => {
-	console.log('Stocks App listening on port ' + app.get('port'))
+app.listen(4000, () => {
+    console.log('Stocks App listening on port 4000!')
 })

@@ -51,9 +51,7 @@ const displayDetailedStat = (state, action) => {
     const displayDetailedStat = state.displayDetailedStat
     displayDetailedStat[key] = !displayDetailedStat[key]
 
-    return Object.assign({}, state, {
-        displayDetailedStat
-    })
+    return {...state, displayDetailedStat}
 }
 
 const requestStat = (state, action) => {
@@ -87,10 +85,7 @@ const receiveStat = (state, action) => {
     
     const stats = getStatData(state, key, statType, action)
     const loading = loadingStat(state, action, false)
-
-    const errors = Object.assign({}, state.errors, {
-        [key]: false
-    })
+    const errors = {...state.errors, [key]: false}
     
     return Object.assign({}, state, {
         statType,
@@ -102,14 +97,12 @@ const receiveStat = (state, action) => {
 
 const getStatData = (state, key, statType, action) => {
 
-    if (action.data !== undefined) {
+    if (action.data) {
 
         const data = action.data
-        const statData = data.map(stat => stat.close)
-                
-        return Object.assign({}, state.stats, {
-            [key]: statData
-        })
+        const statData = data.map(stat => [stat.date, stat.close])
+
+        return {...state.stats, [key]: statData}
     }
 
     return state
@@ -117,10 +110,7 @@ const getStatData = (state, key, statType, action) => {
 
 const receiveStatFail = (state, action) => {
 
-    const errors = Object.assign({}, state.errors, {
-        [action.stat]: true
-    })
-
+    const errors = {...state.errors, [action.stat]: true}
     const loading = loadingStat(state, action, true)
 
     return Object.assign({}, state, {

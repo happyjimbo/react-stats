@@ -1,7 +1,6 @@
 import React from 'react'
 import {shallow} from 'enzyme'
 import StatPanel from './StatPanel'
-import renderer from 'react-test-renderer'
 import LineGraphContainer from '../../shared/containers/LineGraphContainer';
 
 describe('StatPanel', () => {

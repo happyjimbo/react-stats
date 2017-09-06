@@ -18,7 +18,9 @@ const makeGetStatsListItemData = () => {
 
             let displayLoader = true
 
-            if (statData != null && statData.length > 0) {            
+            if (statData && statData.length) {
+
+                statData = statData.map(stat => stat[1])
                 
                 const decorate = (stat) => stat !== null ? numberAsDollar(stat) : ""     
 

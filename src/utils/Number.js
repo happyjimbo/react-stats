@@ -1,8 +1,7 @@
 export const numberAsDollar = (number) => {
-    if (number != null) {
+    if (number) {
         number = number.toFixed(2)
-        number = numberWithCommas(number)
-        return "$" + number
+        return numberWithCommas(number)
     }
     return ""
 }
