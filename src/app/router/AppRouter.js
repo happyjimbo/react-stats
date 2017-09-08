@@ -8,13 +8,12 @@ export const pathName = (routing) => stripPath(routing.locationBeforeTransitions
 export const route = (path) => fetchStats(StatTypes.INDEX)
 
 export const stripPath = (path) => {
-    return !path || path === "/" 
-            ? index 
-                ? path != null && path.charAt(0) === "/" 
-                : path.substr(1) 
-            : path
+    return !path || path === "/"
+            ? index
+            : path && path.charAt(0) === "/"
+                ? path.substr(1)
+                : path
 }
-
 export const updateUrl = (key) => {
     const path = stripPath(key)
     browserHistory.push("/#/" + path)
