@@ -1,4 +1,4 @@
-import makeGetStatsListItemData from './StatListItemSelector'
+import makeStatsListItemData from './StatListItemSelector'
 
 describe("StatListItemSelector", () => {
 
@@ -18,7 +18,7 @@ describe("StatListItemSelector", () => {
 
     let stats = {}
 
-    const getStatsListItemData = makeGetStatsListItemData()
+    const getStatsListItemData = makeStatsListItemData()
 
     const higherThanLastWeek = () => {
         stats = {

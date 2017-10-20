@@ -1,10 +1,10 @@
 import {connect} from 'react-redux';
 import {displayDetailedStats, removeStat} from '../actions/StatsAction';
 import StatListItem from '../components/StatListItem';
-import makeGetStatsListItemData from '../selectors/StatListItemSelector';
+import makeStatsListItemData from '../selectors/StatListItemSelector';
 
 const mapMakeToProps = () => {
-    const getStatsListItemData = makeGetStatsListItemData()
+    const getStatsListItemData = makeStatsListItemData()
     const mapStateToProps = (state, props) => getStatsListItemData(state, props)
     return mapStateToProps
 }

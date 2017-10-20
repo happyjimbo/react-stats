@@ -3,8 +3,10 @@ import moment from 'moment'
 
 // Selector prevents this data from being computed everytime the container
 // is notified of a state change and will only recalculate when needed.
-const StatLineGraphSelector = () => {
-    const getItems = (stats, props) => props.items
+
+const getItems = (state, props) => props.items
+
+const makeStatLineGraphSelector = () => {
     return createSelector( [getItems], (items) => items ? generateGraphData(items) : {} )
 }
 
@@ -45,4 +47,4 @@ const graphLayout = () => {
     }
 }
 
-export default StatLineGraphSelector
+export default makeStatLineGraphSelector

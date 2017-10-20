@@ -1,13 +1,19 @@
 import {statReceivedReducer, initialState} from './StatsReducer'
 import * as types from '../consts/StatsActionTypes'
 import {ALL_STAT_TYPES} from '../../app/consts/AppConsts'
-import * as StatTypes from '../consts/StatTypes'
 
 describe("StatsReducer", () => {
 
     const stat = "monkey"
     const statType = "dollar"
-    const data = [{close: 1}, {close: 2}, {close: 3}]
+
+
+    const dataObject = {
+        date: 1,
+        close: 1
+    }
+
+    const data = [dataObject]
 
     it("should return inital state", () => {
         const reducer = statReceivedReducer(undefined, {})
@@ -82,9 +88,9 @@ describe("StatsReducer", () => {
         const response = { 
             statType,
             stats: { 
-                [stat]: [ 1, 2, 3]
+                [stat]: [ [dataObject.date, dataObject.close] ]
             },
-            errors : { 
+            errors : {
                 [stat]: false 
             },
             loading: { 
@@ -100,6 +106,8 @@ describe("StatsReducer", () => {
         const oldStat = stat
         const newStat = "dog"
         const statType = "dollar"
+
+        const old = [[2, 2]]
                 
         const action = {
             type: types.RECEIVE_STAT,
@@ -110,7 +118,7 @@ describe("StatsReducer", () => {
 
         const state = { 
             stats: {
-                [oldStat]: [ 4, 5, 6 ]
+                [oldStat]: old,
             },
             statType,
             errors : { 
@@ -125,8 +133,8 @@ describe("StatsReducer", () => {
         
         const response =  {         
             stats: {
-                [oldStat]: [ 4, 5, 6], 
-                [newStat]: [ 1, 2, 3 ]
+                [oldStat]: old,
+                [newStat]: [ [dataObject.date, dataObject.close] ]
             },
             statType,            
             errors : { 

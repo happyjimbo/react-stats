@@ -3,15 +3,15 @@ import {numberAsDollar} from '../../utils/Number'
 
 // Selector prevents this data from being computed everytime the container
 // is notified of a state change and will only recalculate when needed.
-const makeGetStatsListItemData = () => {
 
-    const getStats = (state) => state.statReceivedReducer.stats    
-    const getLoading = (state, props) => state.statReceivedReducer.loading[props.statName]
-    const getError = (state, props) => state.statReceivedReducer.errors[props.statName]
-    const getDisplayDetail = (state, props) => state.statReceivedReducer.displayDetailedStat[props.statName]
-    const getStatData = (state, props) => getStats(state)[props.statName]
-    const getStatType = (state, props) => props.statType
-    
+const getStats = (state) => state.statReceivedReducer.stats
+const getLoading = (state, props) => state.statReceivedReducer.loading[props.statName]
+const getError = (state, props) => state.statReceivedReducer.errors[props.statName]
+const getDisplayDetail = (state, props) => state.statReceivedReducer.displayDetailedStat[props.statName]
+const getStatData = (state, props) => getStats(state)[props.statName]
+const getStatType = (state, props) => props.statType
+
+const makeStatsListItemData = () => {
     return createSelector(
         [getStatData, getStatType, getDisplayDetail, getLoading, getError], 
         (statData, statType, displayDetail, loading, error) => {
@@ -91,4 +91,4 @@ const calculateStyles = (today, yesterday, lastweek) => {
     }
 }
 
-export default makeGetStatsListItemData
+export default makeStatsListItemData

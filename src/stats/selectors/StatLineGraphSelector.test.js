@@ -1,5 +1,5 @@
 import StatLineGraphSelector from './StatLineGraphSelector'
-import {arrayTest} from './StatLineGraphSelector'
+import makeStatLineGraphSelector from './StatLineGraphSelector'
 
 describe("StatLineGraphSelector", () => {
 
@@ -9,7 +9,7 @@ describe("StatLineGraphSelector", () => {
         const stats = {}
         const props = {items}
 
-        const selector = StatLineGraphSelector()
+        const selector = makeStatLineGraphSelector()
         return selector(stats, props)
     }
 

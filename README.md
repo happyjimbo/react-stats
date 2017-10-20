@@ -1,4 +1,4 @@
-Mobile first Web App for getting Satori Stats, this will refresh the visible stats every 30 seconds.
+Mobile first Web App for getting stocks stats, this will refresh the visible stats every 30 seconds.
 
 You can view a CI development version here: <a href="http://reactstats.herokuapp.com">http://reactstats.herokuapp.com</a>
 
@@ -6,15 +6,14 @@ This is built using the following technologies:
 
 - Babel ECMAScript 6 / 2015: https://babeljs.io/learn-es2015/
 - React: https://facebook.github.io/react/
-- React Bootstrap: https://react-bootstrap.github.io/
-- Redux: http://redux.js.org/docs/introduction/ 
-- Redux Container Components: http://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components
+- Redux: http://redux.js.org/docs/introduction/
 - Redux Saga: https://github.com/redux-saga/redux-saga
 - Reselect: https://github.com/reactjs/reselect 
+- Redux Container Components: http://redux.js.org/docs/basics/UsageWithReact.html#presentational-and-container-components
 - React Router Redux: https://github.com/reactjs/react-router-redux
+- React Bootstrap: https://react-bootstrap.github.io/
 - Jest: https://facebook.github.io/jest/
-- React D3 Components: https://github.com/codesuki/react-d3-components 
-- React Google Login: https://www.npmjs.com/package/react-google-login 
+- Victory.js D3 Components: https://formidable.com/open-source/victory/  
 - SCSS: http://sass-lang.com/
 
 Server:
