@@ -7,10 +7,12 @@ exports[`NavBar compares component to snapshot 1`] = `
       className="container">
       <div
         className="navbar-header">
-        <span
-          className="navbar-brand">
+        <a
+          className="navbar-brand"
+          href="javascript:void(null)"
+          onClick={undefined}>
           Stocks App
-        </span>
+        </a>
         <button
           className="navbar-toggle collapsed"
           onClick={[Function]}
@@ -50,6 +52,22 @@ exports[`NavBar compares component to snapshot 1`] = `
             Search
           </button>
         </div>
+        <ul
+          className="nav navbar-nav navbar-right"
+          role={null}>
+          <li
+            className=""
+            role="presentation"
+            style={undefined}>
+            <a
+              href="#"
+              id="about"
+              onClick={[Function]}
+              role="button">
+              About
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>

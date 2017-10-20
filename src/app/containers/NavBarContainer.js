@@ -1,9 +1,13 @@
 import {connect} from 'react-redux'
 import NavBar from '../components/NavBar'
 import {requestStat} from '../../stats/actions/StatsAction'
+import {ABOUT, INDEX} from "../consts/AppConsts";
+import {changeRoute} from "../actions/AppAction";
     
-const mapDispatchToProps = (dispatch) => ({
-    onClick : (textInput) => handleSelectedTab(dispatch, textInput)    
+const mapDispatchToProps = dispatch => ({
+    selectClick : (textInput) => handleSelectedTab(dispatch, textInput),
+    indexClick : () => dispatch(changeRoute(INDEX)),
+    aboutClick : () => dispatch(changeRoute(ABOUT))
 })
 
 const handleSelectedTab = (dispatch, textInput) => {

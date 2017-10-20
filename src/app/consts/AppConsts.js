@@ -1,3 +1,8 @@
+export const CHANGE_ROUTE = 'CHANGE_ROUTE'
+
+export const INDEX = 'index'
+export const ABOUT = 'about'
+
 export const INITAL_LOAD = "INITAL_LOAD"
 export const ALL_STAT_TYPES = "ALL_STAT_TYPES"
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {Navbar, FormGroup, FormControl, Button} from 'react-bootstrap'
+import {Navbar, Nav, NavItem, FormGroup, FormControl, Button} from 'react-bootstrap'
 import './NavBar.css'
 
-const NavBar = ({ onClick }) => {
+const NavBar = ({ selectClick, indexClick, aboutClick }) => {
 
     let textInput
 
@@ -12,7 +12,7 @@ const NavBar = ({ onClick }) => {
             <Navbar>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        Stocks App
+                        <a href="javascript:void(null)" onClick={indexClick}>Stocks App</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
@@ -22,8 +22,12 @@ const NavBar = ({ onClick }) => {
                             <FormControl type="text" placeholder="stock" />
                         </FormGroup>
                         {' '}
-                        <Button type="submit" onClick={e => onClick(textInput)}>Search</Button>
+                        <Button type="submit" onClick={e => selectClick(textInput)}>Search</Button>
                     </Navbar.Form>
+
+                    <Nav pullRight>
+                        <NavItem eventKey={1} onClick={aboutClick} id="about">About</NavItem>
+                    </Nav>
                 </Navbar.Collapse>
             </Navbar>
         </div>
@@ -31,8 +35,9 @@ const NavBar = ({ onClick }) => {
 }
 
 Navbar.PropTypes = {
-    onClick: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired
+    selectClick: PropTypes.func.isRequired,
+    indexClick: PropTypes.func.isRequired,
+    aboutClick: PropTypes.func.isRequired
 }
 
 export default NavBar

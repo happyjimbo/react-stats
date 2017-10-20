@@ -24,7 +24,7 @@ describe("AppRouter", () => {
         const pathNameStripped = pathName(routing)
         expect(pathNameStripped).toEqual(index)
 
-        const strippedPath = stripPath(pathname)
+        const strippedPath = stripPath(pathname);
         expect(strippedPath).toEqual(index)
     })
 

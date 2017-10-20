@@ -21,16 +21,17 @@ describe('NavBar', () =>{
     it ('run callback when Button clicked, setting value to true', () => {
 
         let clicked = false
-        const onClick = (textInput) => { clicked = true; }
+        const selectClick = (textInput) => { clicked = true; }
 
-        const props = { onClick }
+        const props = { selectClick }
         const component = shallow(<Navbar {...props} />)
-        
+
+
         expect(clicked).toBe(false)
 
         const button = component.find('Button')
         button.simulate('click')
-        
+
         expect(clicked).toBe(true)
     })
 })

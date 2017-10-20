@@ -4,7 +4,6 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import createLogger from 'redux-logger'
-import App from './app/components/App'
 import CombineReducers from './shared/reducers/CombineReducers'
 import * as AppSaga from './app/saga/AppSaga'
 import * as StatsSaga from './stats/sagas/StatsSaga'
@@ -13,7 +12,7 @@ import {INITAL_LOAD} from './app/consts/AppConsts'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { Router, Route, hashHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import * as AppRouter from './app/router/AppRouter'
+import AppContainer from "./app/containers/AppContainer";
 
 const logger = createLogger()
 const sagaMiddleware = createSagaMiddleware()
@@ -40,8 +39,8 @@ ReactDOM.render(
 	<Provider store={store}>
 		 <Router history={history}>
 			<div>
-			  <Route path="/" component={App} >
-			  	<Route path={AppRouter.index} component={App} />
+			  <Route path="/" component={AppContainer} >
+				  <Route path="*" component={AppContainer} />
 			  </Route>
 			  </div>
 		</Router>

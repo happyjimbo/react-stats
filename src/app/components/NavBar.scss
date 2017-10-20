@@ -2,13 +2,22 @@
 
     $blueColor: #2F69C6;
     $greyColor: #eeeeee;
+    $linkColor: white;
     
     .navbar-default {
         background-color: $blueColor;
         border-color: $greyColor;
 
-        .navbar-brand {
-          color: white;
+        .navbar-header {
+            a {
+                &, &:hover, &:visited, &:active {
+                    color: $linkColor
+                }
+            }
+        }
+
+        .navbar-nav #about {
+            color: $linkColor;
         }
     }
 
