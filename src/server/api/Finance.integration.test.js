@@ -1,7 +1,7 @@
 import googleFinance from 'google-finance'
 import moment from 'moment'
 
-describe('Integration tests of the Finance Library, to confirm that it works as expected', () => {
+xdescribe('Integration tests of the Finance Library, to confirm that it works as expected', () => {
 
     it ('should get company news from finance lib', done => {
 
