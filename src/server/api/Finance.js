@@ -1,7 +1,7 @@
 import googleFinance from 'google-finance'
 import moment from 'moment'
 
-const Finance = (req, res, next) => {
+const Finance = (req, res) => {
 
     const {days, symbol} = req.query
 
@@ -10,11 +10,7 @@ const Finance = (req, res, next) => {
 
     const options = { symbol, from, to }
 
-    const callback = (err, quotes) => {
-        res.send(quotes)
-    }
-
-    googleFinance.historical(options, callback)
+    googleFinance.historical(options, (err, quotes) => res.send(quotes))
 }
 
 export default Finance
