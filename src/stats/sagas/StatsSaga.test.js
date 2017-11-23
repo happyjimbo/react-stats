@@ -46,8 +46,7 @@ describe('StatsSaga', () => {
             expect(generator.next().value).toEqual(fetchStatData)    
         }
 
-        // end of saga
-        expect(generator.next().value).toEqual(undefined)
+        expect(generator.next().done).toBeTruthy()
     })
 
     it ('fetchStatData should call Service.fetchStatData, then call StatsAction.validateResponse then put the response', () => {
@@ -67,8 +66,7 @@ describe('StatsSaga', () => {
         const putResponse = put(response)
         expect(generator.next(response).value).toEqual(putResponse)
 
-        // end of saga
-        expect(generator.next().value).toEqual(undefined)
+        expect(generator.next().done).toBeTruthy()
     })    
 
      it ('requestStat should call fetchStatData', () => {
